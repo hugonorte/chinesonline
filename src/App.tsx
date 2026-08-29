@@ -1,6 +1,7 @@
 import { Button } from './components/Button/Button'
 import { Heading } from './components/Heading/Heading'
 import { Header } from './components/Header/Header'
+import { Hero } from './components/Hero/Hero'
 import { LogoBrand } from './components/LogoBrand/LogoBrand'
 import { Section } from './components/Section/Section'
 import { StoreBadge } from './components/StoreBadge/StoreBadge'
@@ -33,6 +34,7 @@ function App() {
         ]}
         action={<StoreBadge href={PLAY_STORE_URL} size="sm" />}
       />
+      <Hero />
       <Section>
         <Heading level={1}>chinesonline.com.br</Heading>
         <Text size="lg" tone="muted" measure>

@@ -23,7 +23,9 @@ html {
 
 body {
   min-height: 100svh;
-  background: var(--surface-page);
+  background: var(--color-teal-600);
+  background: linear-gradient(0deg,rgba(40, 163, 184, 1) 95%, rgba(4, 99, 112, 1) 100%);
+  
   color: var(--fg-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

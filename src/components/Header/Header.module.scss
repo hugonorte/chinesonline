@@ -3,9 +3,8 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 10;
-  backdrop-filter: blur(12px);
-  border-block-end: 1px solid var(--border-subtle);
+  z-index: 100;
+  background: transparent !important;
 }
 
 .light {
@@ -16,12 +15,12 @@
 // o próprio app faz: barra preta com o logo em branco. Como Section.inverse,
 // os papéis de texto são redefinidos aqui e os filhos não precisam saber.
 .dark {
-  background: color-mix(in srgb, var(--color-ink-900) 92%, transparent);
+  background: transparent !important;
 
   --fg-heading: var(--color-ink-0);
   --fg-body: var(--color-ink-200);
   --fg-muted: var(--color-ink-400);
-  --border-subtle: var(--color-ink-800);
+  --border-subtle: transparent;
   --action-focus: var(--color-ink-0);
 }
 
