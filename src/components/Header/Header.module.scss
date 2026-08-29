@@ -1,0 +1,71 @@
+@use '../../styles/abstracts' as a;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(12px);
+  border-block-end: 1px solid var(--border-subtle);
+}
+
+.light {
+  background: color-mix(in srgb, var(--surface-page) 88%, transparent);
+}
+
+// O wordmark é branco, então o header precisa de fundo escuro — é também o que
+// o próprio app faz: barra preta com o logo em branco. Como Section.inverse,
+// os papéis de texto são redefinidos aqui e os filhos não precisam saber.
+.dark {
+  background: color-mix(in srgb, var(--color-ink-900) 92%, transparent);
+
+  --fg-heading: var(--color-ink-0);
+  --fg-body: var(--color-ink-200);
+  --fg-muted: var(--color-ink-400);
+  --border-subtle: var(--color-ink-800);
+  --action-focus: var(--color-ink-0);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 4rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--fg-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-tight);
+  text-decoration: none;
+
+  &:focus-visible { @include a.focus-ring(var(--action-focus)); }
+
+  // O logo herda a cor daqui via currentColor.
+  svg { --logo-height: 1.5rem; }
+}
+
+.nav {
+  display: none;
+
+  // Landing de app tem poucas âncoras: abaixo de md elas somem e sobra o CTA,
+  // que é o que a página quer de qualquer forma. Sem hambúrguer, sem JS.
+  @include a.mq('md') {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+}
+
+.link {
+  color: var(--fg-body);
+  font-size: var(--text-sm);
+  text-decoration: none;
+
+  &:hover { color: var(--action-primary); }
+  &:focus-visible { @include a.focus-ring; }
+}

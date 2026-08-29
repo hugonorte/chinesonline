@@ -1,0 +1,156 @@
+// =============================================================================
+// TIPOGRAFIA
+// =============================================================================
+// A parte que é específica do chinesonline: a página mistura três sistemas de
+// escrita com necessidades métricas diferentes.
+//
+//   .u-hanzi   汉字 — glifos de largura cheia, precisam de entrelinha maior
+//   .u-pinyin  hàn zì — latino com diacríticos de tom; a caixa alta encosta
+//                       no acento, então pede leading próprio
+//   .u-tone-N  colore sílaba ou caractere pelo tom (convenção pedagógica)
+//
+// Nada aqui depende de webfont carregada: as stacks têm fallback de sistema
+// que cobre CJK no Android, iOS, Windows e macOS.
+// =============================================================================
+
+@use '../abstracts' as a;
+
+html {
+  font-family: var(--font-sans);
+  font-size: 100%;
+  line-height: var(--leading-normal);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--fg-heading);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--text-4xl);
+
+  @include a.mq('md') {
+    font-size: var(--text-5xl);
+    letter-spacing: var(--tracking-tighter);
+  }
+}
+
+h2 {
+  font-size: var(--text-3xl);
+
+  @include a.mq('md') {
+    font-size: var(--text-4xl);
+  }
+}
+
+h3 {
+  font-size: var(--text-xl);
+
+  @include a.mq('md') {
+    font-size: var(--text-2xl);
+  }
+}
+
+h4 {
+  font-size: var(--text-lg);
+}
+
+p {
+  text-wrap: pretty;
+}
+
+small {
+  font-size: var(--text-sm);
+}
+
+code,
+kbd,
+pre {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+// -----------------------------------------------------------------------------
+// Escrita chinesa
+// -----------------------------------------------------------------------------
+
+.u-hanzi {
+  font-family: var(--font-hanzi);
+  line-height: var(--leading-hanzi);
+  // Hanzi não tem espaço entre palavras; a quebra é caractere a caractere,
+  // mas não pode deixar pontuação chinesa órfã no início da linha.
+  line-break: strict;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+// Caractere isolado em destaque — cartão de vocabulário, capa de lição.
+.u-hanzi-display {
+  font-family: var(--font-hanzi);
+  font-size: var(--text-6xl);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-none);
+  letter-spacing: var(--tracking-normal);
+}
+
+.u-pinyin {
+  font-family: var(--font-pinyin);
+  // Os diacríticos (ā ǎ) sobem acima da altura normal de ascendente:
+  // sem folga extra, a linha de cima encosta no tom.
+  line-height: var(--leading-relaxed);
+  letter-spacing: var(--tracking-wide);
+  font-variant-ligatures: none;
+}
+
+// Pinyin anotado acima do caractere, via <ruby>.
+ruby {
+  ruby-position: over;
+  ruby-align: center;
+}
+
+rt {
+  font-family: var(--font-pinyin);
+  font-size: 0.5em;
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-snug);
+  color: var(--fg-muted);
+  letter-spacing: var(--tracking-wide);
+}
+
+// -----------------------------------------------------------------------------
+// Cor por tom — 1º ao 4º + neutro
+// -----------------------------------------------------------------------------
+@each $tone, $value in a.$colors-tone {
+  .u-tone-#{$tone} {
+    color: var(--color-tone-#{$tone});
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Utilitários de bloco de texto
+// -----------------------------------------------------------------------------
+
+.u-prose {
+  max-width: var(--layout-content);
+  color: var(--fg-body);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+
+  > * + * {
+    margin-block-start: var(--space-4);
+  }
+}
+
+.u-muted {
+  color: var(--fg-muted);
+}
+
+.u-visually-hidden {
+  @include a.visually-hidden;
+}

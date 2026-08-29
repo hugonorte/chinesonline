@@ -1,0 +1,84 @@
+@use '../../styles/abstracts' as a;
+
+.grid {
+  display: grid;
+  gap: var(--space-6);
+  align-items: start;
+
+  @include a.mq('md') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-8);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.featured {
+  border-color: var(--action-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.name {
+  color: var(--fg-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+}
+
+.price {
+  color: var(--fg-heading);
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-none);
+  letter-spacing: var(--tracking-tight);
+}
+
+// Sem assinatura: "pagamento único" é argumento de venda, não letra miúda.
+// Por isso fica colado no preço e não perdido na lista de itens.
+.note {
+  margin-block-start: var(--space-2);
+  color: var(--fg-muted);
+  font-size: var(--text-sm);
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  color: var(--fg-body);
+  line-height: var(--leading-snug);
+}
+
+.check {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-block-start: 0.1em;
+  color: var(--color-success);
+}
+
+.action {
+  margin-block-start: auto;
+  padding-block-start: var(--space-2);
+}

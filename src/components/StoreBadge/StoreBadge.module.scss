@@ -1,0 +1,55 @@
+// O badge do Google Play é marca de terceiro: usa-se o asset como distribuído,
+// sem recolorir, redesenhar ou recortar. O que o CSS pode fazer é garantir a
+// área de respiro que a diretriz exige — 1/4 da altura do badge em todos os
+// lados. O PNG oficial já traz 29px de folga vertical (sobre 192px de arte,
+// ~15%) e nenhuma horizontal, então a diferença vem daqui.
+//
+// 0.2 da altura renderizada cobre os dois casos com margem: vertical fica em
+// ~0,32 e horizontal em 0,20, ambos acima do 0,192 exigido.
+
+.badge {
+  display: inline-block;
+  padding: calc(var(--store-badge-height) * 0.2);
+  border-radius: var(--radius-md);
+
+  img {
+    display: block;
+    height: var(--store-badge-height);
+    width: auto;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--action-focus);
+    outline-offset: 0;
+  }
+}
+
+// A arte ocupa 76,8% da altura do PNG, então a altura da imagem é maior que a
+// altura visível do badge. Os valores abaixo dão arte de 40 / 48 / 56 px.
+.sm { --store-badge-height: 3.25rem; }
+.md { --store-badge-height: 3.875rem; }
+.lg { --store-badge-height: 4.5rem; }
+
+// -----------------------------------------------------------------------------
+// Slot "em breve"
+// -----------------------------------------------------------------------------
+// Deliberadamente NÃO usa o badge da Apple. A marca "Download on the App Store"
+// só pode anunciar app que já está na App Store — para um app não publicado,
+// exibi-la afirma algo falso. Este slot é um elemento neutro nosso.
+
+.soon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  color: var(--fg-muted);
+  font-size: var(--text-sm);
+}
+
+.soonIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}

@@ -1,0 +1,10 @@
+.container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--layout-gutter);
+}
+
+.content { max-width: var(--layout-content); }
+.default { max-width: var(--layout-container); }
+.wide    { max-width: 90rem; }
+.flush   { padding-inline: 0; }

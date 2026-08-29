@@ -1,0 +1,13 @@
+// =============================================================================
+// Entrada única dos estilos globais. Importada uma vez em `src/main.tsx`.
+//
+// A ordem importa: tokens primeiro (o resto depende das custom properties),
+// depois o reset, depois a tipografia.
+//
+// Estilo de componente NÃO entra aqui — cada primitivo tem o seu
+// `Componente.module.scss` ao lado do `.tsx`.
+// =============================================================================
+
+@use 'base/root';
+@use 'base/reset';
+@use 'base/typography';

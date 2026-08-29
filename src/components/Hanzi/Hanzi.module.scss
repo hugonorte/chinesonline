@@ -1,0 +1,41 @@
+@use '../../styles/abstracts' as a;
+
+.hanzi {
+  font-family: var(--font-hanzi);
+  line-height: var(--leading-hanzi);
+  line-break: strict;
+}
+
+.inline {
+  font-size: inherit;
+}
+
+.lg {
+  font-size: var(--text-3xl);
+  line-height: var(--leading-tight);
+}
+
+.display {
+  display: block;
+  font-size: var(--text-6xl);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-none);
+}
+
+// O pinyin em <rt> herda do bloco; só o tamanho relativo muda por variante.
+.hanzi rt {
+  font-family: var(--font-pinyin);
+  letter-spacing: var(--tracking-wide);
+  color: var(--fg-muted);
+}
+
+.display rt {
+  font-size: 0.22em;
+  padding-block-end: var(--space-2);
+}
+
+.lg rt { font-size: 0.34em; }
+
+// Quando o tom colore o caractere, o pinyin acompanha — senão a leitura
+// visual se parte em dois sinais diferentes para a mesma informação.
+.toned rt { color: inherit; }

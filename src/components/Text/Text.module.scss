@@ -1,0 +1,16 @@
+.text {
+  color: var(--fg-body);
+  line-height: var(--leading-normal);
+  text-wrap: pretty;
+}
+
+.sm   { font-size: var(--text-sm); }
+.base { font-size: var(--text-base); }
+.lg   { font-size: var(--text-lg); line-height: var(--leading-relaxed); }
+.xl   { font-size: var(--text-xl); line-height: var(--leading-relaxed); }
+
+.muted   { color: var(--fg-muted); }
+.brand   { color: var(--action-primary); }
+.heading { color: var(--fg-heading); }
+
+.measure { max-width: var(--layout-content); }

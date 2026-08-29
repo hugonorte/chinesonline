@@ -1,0 +1,229 @@
+// =============================================================================
+// TOKENS — fonte única da verdade do design system
+// =============================================================================
+// Estes maps são a camada de autoria. Eles não chegam ao navegador diretamente:
+// `base/_root.scss` percorre cada map e emite as custom properties em :root.
+//
+// Regra: nenhum valor bruto (hex, px, rem) deve aparecer fora deste arquivo.
+// Componentes consomem sempre `var(--color-brand-600)`, nunca `#c8102e`.
+//
+// ⚠️  PALETA PROVISÓRIA — proposta de partida, não a identidade final do
+//     chinesonline.com.br. Trocar os valores aqui repropaga para o site inteiro.
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Cor
+// -----------------------------------------------------------------------------
+
+// Marca — o vermelho da tela de entrada do app (#7b0708 amostrado dos pixels).
+// É bem mais escuro que um vermelho chinês típico: ancora no passo 800, não 600.
+$colors-brand: (
+  50:  #faf2f2,
+  100: #f8e0e0,
+  200: #f3c1c1,
+  300: #ee9899,
+  400: #ea6768,
+  500: #e83637,
+  600: #db1516,
+  700: #b70e0f,
+  800: #7b0708,
+  900: #660808,
+);
+
+// Ação — o azul dos botões do app.
+// 
+// Atenção ao passo: o app usa #2980ff (aqui, 500) com texto branco, o que dá
+// contraste 3,73 e reprova no AA para texto normal. Por isso a camada semântica
+// aponta para o 600, que dá 5,31. O 500 continua disponível para superfície e
+// borda, onde 3,0 basta.
+$colors-action: (
+  50:  #f1f5fb,
+  100: #dee9fa,
+  200: #bad4fa,
+  300: #8cb9fa,
+  400: #5599fb,
+  500: #2980ff,
+  600: #0562eb,
+  700: #0751bd,
+  800: #084091,
+  900: #082e66,
+);
+
+// Petróleo — a superfície da tela de jogo (#005662, ancorado no 900).
+// Os passos claros existem para fundo e borda; o app só usa o extremo escuro.
+$colors-teal: (
+  50:  #f3f8f9,
+  100: #e4f2f3,
+  200: #cbe5e9,
+  300: #aad6dc,
+  400: #82c6cf,
+  500: #5ab7c4,
+  600: #3da4b3,
+  700: #308894,
+  800: #246b75,
+  900: #005662,
+);
+
+// XP — o amarelo-claro da pontuação acumulada, sobre o petróleo.
+// É cor de destaque, não de marca: use com parcimônia.
+$colors-xp: (
+  50:  #f9faf3,
+  100: #f5f6e2,
+  200: #f5f6c3,
+  300: #ebed9a,
+  400: #dfe26f,
+  500: #d3d648,
+  600: #bdc030,
+  700: #999b29,
+  800: #757722,
+  900: #53541a,
+);
+
+// Neutros — quase neutros, levemente frios. Antes eram quentes, o que fazia
+// sentido com o vermelho vivo anterior; com preto de header e petróleo de jogo,
+// o frio assenta melhor.
+$colors-ink: (
+  0:   #ffffff,
+  50:  #f6f7f7,
+  100: #ecedee,
+  200: #dadcde,
+  300: #c2c6c8,
+  400: #a5abaf,
+  500: #899195,
+  600: #6e767a,
+  700: #505659,
+  800: #303436,
+  900: #121314,
+);
+
+// Tons do pinyin — convenção pedagógica de cor por tom (1º a 4º + neutro),
+// religados à paleta nova para a página não virar arco-íris.
+$colors-tone: (
+  1: #b70e0f, // ā  — alto e constante   (brand 700)
+  2: #b45309, // á  — ascendente
+  3: #0f7a4d, // ǎ  — descendente-ascendente
+  4: #0751bd, // à  — descendente        (action 700)
+  5: #6e767a, // a  — neutro             (ink 600)
+);
+
+// Semânticos — feedback de interface. Não precisam sair da marca, mas danger e
+// info saem, porque coincidem naturalmente com o vermelho e o azul do app.
+$colors-semantic: (
+  'success': #0f7a4d,
+  'warning': #b45309,
+  'danger':  #b70e0f,
+  'info':    #0562eb,
+);
+
+// -----------------------------------------------------------------------------
+// Espaçamento — escala de base 4px
+// -----------------------------------------------------------------------------
+$space: (
+  0:  0,
+  1:  0.25rem,
+  2:  0.5rem,
+  3:  0.75rem,
+  4:  1rem,
+  5:  1.25rem,
+  6:  1.5rem,
+  8:  2rem,
+  10: 2.5rem,
+  12: 3rem,
+  16: 4rem,
+  20: 5rem,
+  24: 6rem,
+  32: 8rem,
+);
+
+// -----------------------------------------------------------------------------
+// Tipografia
+// -----------------------------------------------------------------------------
+// Três famílias com papéis distintos — ver `base/_typography.scss`.
+//   sans   → interface e texto em português
+//   hanzi  → caracteres chineses (precisa de cobertura CJK real)
+//   pinyin → latino com diacríticos de tom (ā á ǎ à ē é ě è ǚ …)
+$fonts: (
+  'sans':   ('Inter', system-ui, 'Segoe UI', Roboto, sans-serif),
+  'hanzi':  ('Noto Sans SC', 'Noto Sans CJK SC', 'PingFang SC', 'Microsoft YaHei', sans-serif),
+  'pinyin': ('Inter', 'Noto Sans', system-ui, sans-serif),
+  'mono':   (ui-monospace, 'SF Mono', Consolas, monospace),
+);
+
+$font-size: (
+  'xs':   0.75rem,
+  'sm':   0.875rem,
+  'base': 1rem,
+  'lg':   1.125rem,
+  'xl':   1.25rem,
+  '2xl':  1.5rem,
+  '3xl':  1.875rem,
+  '4xl':  2.25rem,
+  '5xl':  3rem,
+  '6xl':  3.75rem,
+);
+
+$font-weight: (
+  'regular':  400,
+  'medium':   500,
+  'semibold': 600,
+  'bold':     700,
+);
+
+// Hanzi pede entrelinha maior que texto latino no mesmo tamanho —
+// os glifos ocupam a caixa inteira e sem respiro o bloco fecha.
+$line-height: (
+  'none':    1,
+  'tight':   1.2,
+  'snug':    1.4,
+  'normal':  1.6,
+  'relaxed': 1.75,
+  'hanzi':   1.9,
+);
+
+$letter-spacing: (
+  'tighter': -0.03em,
+  'tight':   -0.015em,
+  'normal':  0,
+  'wide':    0.02em,
+);
+
+// -----------------------------------------------------------------------------
+// Forma e profundidade
+// -----------------------------------------------------------------------------
+$radius: (
+  'none': 0,
+  'sm':   0.25rem,
+  'md':   0.5rem,
+  'lg':   0.75rem,
+  'xl':   1.25rem,
+  'full': 9999px,
+);
+
+$shadow: (
+  'sm': (0 1px 2px rgba(23, 20, 15, 0.06)),
+  'md': (0 4px 12px rgba(23, 20, 15, 0.08)),
+  'lg': (0 12px 32px rgba(23, 20, 15, 0.12)),
+);
+
+// -----------------------------------------------------------------------------
+// Layout
+// -----------------------------------------------------------------------------
+$layout: (
+  'content':   72ch,    // largura confortável de leitura corrida
+  'container': 75rem,   // 1200px
+  'gutter':    1.5rem,
+);
+
+// -----------------------------------------------------------------------------
+// Movimento
+// -----------------------------------------------------------------------------
+$duration: (
+  'fast': 120ms,
+  'base': 200ms,
+  'slow': 360ms,
+);
+
+$easing: (
+  'standard': cubic-bezier(0.2, 0, 0, 1),
+  'entrance': cubic-bezier(0, 0, 0, 1),
+);

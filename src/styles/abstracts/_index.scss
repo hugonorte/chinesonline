@@ -1,0 +1,9 @@
+// =============================================================================
+// A "API" interna dos estilos.
+// Componentes usam sempre `@use '~/styles/abstracts' as a;` e nunca importam
+// os partials individualmente — assim a superfície pública fica num lugar só.
+// =============================================================================
+
+@forward 'tokens';
+@forward 'breakpoints';
+@forward 'mixins';

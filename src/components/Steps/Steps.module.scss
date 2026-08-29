@@ -1,0 +1,45 @@
+@use '../../styles/abstracts' as a;
+
+.steps {
+  display: grid;
+  gap: var(--space-8);
+  list-style: none;
+  padding: 0;
+  counter-reset: step;
+
+  @include a.mq('md') {
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: var(--space-6);
+  }
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.marker {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--color-action-50);
+  color: var(--action-primary);
+  border-radius: var(--radius-full);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  font-variant-numeric: tabular-nums;
+}
+
+.title {
+  color: var(--fg-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+
+.body {
+  color: var(--fg-body);
+  line-height: var(--leading-relaxed);
+}

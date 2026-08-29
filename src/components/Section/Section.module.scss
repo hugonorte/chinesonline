@@ -1,0 +1,23 @@
+@use '../../styles/abstracts' as a;
+
+.section {
+  @include a.section-spacing;
+}
+
+.default { background: var(--surface-page); }
+.subtle  { background: var(--surface-subtle); }
+
+.inverse {
+  background: var(--surface-inverse);
+  color: var(--fg-inverse);
+
+  // Dentro do bloco escuro, os papéis de texto invertem. Fazer isso aqui e não
+  // em cada componente é o que mantém `Heading`/`Text` ignorantes do contexto.
+  --fg-heading: var(--color-ink-0);
+  --fg-body: var(--color-ink-200);
+  --fg-muted: var(--color-ink-400);
+  --border-subtle: var(--color-ink-700);
+}
+
+.tight { padding-block: var(--space-10); }
+.flush { padding-block: 0; }

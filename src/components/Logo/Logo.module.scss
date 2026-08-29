@@ -1,0 +1,6 @@
+.logo {
+  display: block;
+  // A altura manda; a largura acompanha a proporção do viewBox.
+  height: var(--logo-height, 1.75rem);
+  width: auto;
+}

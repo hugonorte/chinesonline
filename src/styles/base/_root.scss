@@ -1,0 +1,136 @@
+// =============================================================================
+// :ROOT — os maps SASS viram custom properties aqui
+// =============================================================================
+// Esta é a ponte entre autoria (compile-time) e runtime. Tudo que precisar ser
+// lido pelo navegador — troca de tema, media query, JS, Claude Design gerando
+// seções — passa por este arquivo. Não escreva `--var` à mão: adicione ao map.
+// =============================================================================
+
+@use 'sass:meta';
+@use '../abstracts' as t;
+
+$ramps: (
+  'brand':  t.$colors-brand,
+  'action': t.$colors-action,
+  'teal':   t.$colors-teal,
+  'xp':     t.$colors-xp,
+  'ink':    t.$colors-ink,
+);
+
+:root {
+  // --- Cor ---------------------------------------------------------------
+  @each $ramp, $scale in $ramps {
+    @each $step, $value in $scale {
+      --color-#{$ramp}-#{$step}: #{$value};
+    }
+  }
+
+  @each $tone, $value in t.$colors-tone {
+    --color-tone-#{$tone}: #{$value};
+  }
+
+  @each $name, $value in t.$colors-semantic {
+    --color-#{$name}: #{$value};
+  }
+
+  // --- Espaçamento -------------------------------------------------------
+  @each $step, $value in t.$space {
+    --space-#{$step}: #{$value};
+  }
+
+  // --- Tipografia --------------------------------------------------------
+  // `--text-*` é sempre TAMANHO. Cor de texto vive em `--fg-*`, mais abaixo.
+  @each $name, $stack in t.$fonts {
+    --font-#{$name}: #{meta.inspect($stack)};
+  }
+  @each $name, $value in t.$font-size {
+    --text-#{$name}: #{$value};
+  }
+  @each $name, $value in t.$font-weight {
+    --weight-#{$name}: #{$value};
+  }
+  @each $name, $value in t.$line-height {
+    --leading-#{$name}: #{$value};
+  }
+  @each $name, $value in t.$letter-spacing {
+    --tracking-#{$name}: #{$value};
+  }
+
+  // --- Forma e profundidade ----------------------------------------------
+  @each $name, $value in t.$radius {
+    --radius-#{$name}: #{$value};
+  }
+  @each $name, $value in t.$shadow {
+    --shadow-#{$name}: #{$value};
+  }
+
+  // --- Layout e movimento ------------------------------------------------
+  @each $name, $value in t.$layout {
+    --layout-#{$name}: #{$value};
+  }
+  @each $name, $value in t.$duration {
+    --duration-#{$name}: #{$value};
+  }
+  @each $name, $value in t.$easing {
+    --ease-#{$name}: #{$value};
+  }
+
+  // ---------------------------------------------------------------------
+  // CAMADA SEMÂNTICA
+  // ---------------------------------------------------------------------
+  // Os tokens acima são o vocabulário bruto (`--color-ink-700`). Os de baixo
+  // dizem o *papel* (`--fg-body`). Componentes devem consumir esta camada:
+  // é ela que permite trocar tema sem reescrever componente nenhum.
+  --surface-page:    var(--color-ink-0);
+  --surface-subtle:  var(--color-ink-50);
+  --surface-raised:  var(--color-ink-0);
+  --surface-inverse: var(--color-ink-900);
+  // Superfícies de marca, tiradas direto do app: vermelho da tela de entrada
+  // e petróleo da tela de jogo.
+  --surface-brand:   var(--color-brand-800);
+  --surface-game:    var(--color-teal-900);
+
+  --fg-heading:   var(--color-ink-900);
+  --fg-body:      var(--color-ink-700);
+  --fg-muted:     var(--color-ink-600);  // o 500 dá 3,21 sobre branco: reprova AA
+  --fg-inverse:   var(--color-ink-0);
+  --fg-on-brand:  var(--color-ink-0);
+
+  --border-subtle:  var(--color-ink-200);
+  --border-strong:  var(--color-ink-300);
+
+  // Azul, como no app — e no passo 600, não no 500 do app: com branco por cima
+  // o 500 dá 3,73 e reprova no AA. O vermelho da marca fica para identidade e
+  // superfície, não para botão.
+  --action-primary:       var(--color-action-600);
+  --action-primary-hover: var(--color-action-700);
+  --action-focus:         var(--color-action-600);
+}
+
+// ---------------------------------------------------------------------------
+// Tema escuro — só a camada semântica é redefinida, nunca a paleta bruta.
+// Se o chinesonline for exclusivamente claro, apague este bloco inteiro:
+// nada mais no design system depende dele.
+// ---------------------------------------------------------------------------
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --surface-page:    var(--color-ink-900);
+    --surface-subtle:  var(--color-ink-800);
+    --surface-raised:  var(--color-ink-800);
+    --surface-inverse: var(--color-ink-0);
+
+    --fg-heading:  var(--color-ink-50);
+    --fg-body:     var(--color-ink-200);
+    --fg-muted:    var(--color-ink-400);
+    --fg-inverse:  var(--color-ink-900);
+
+    --border-subtle: var(--color-ink-700);
+    --border-strong: var(--color-ink-600);
+
+    // O azul 600 escurece demais sobre fundo escuro; sobe para o 400.
+    --action-primary:       var(--color-brand-400);
+    --action-primary-hover: var(--color-brand-300);
+    --action-focus:         var(--color-brand-400);
+    --fg-on-brand:        var(--color-ink-900);
+  }
+}
