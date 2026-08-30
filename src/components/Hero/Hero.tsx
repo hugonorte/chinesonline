@@ -129,10 +129,18 @@ export function Hero({ className }: HeroProps) {
 
           {/* CTAs com acessibilidade */}
           <nav className={styles.buttons} aria-label="Ações principais">
-            <Button variant="secondary" aria-label="Saiba mais sobre o ChinesOnline">
+            <Button
+              href="#features"
+              variant="secondary"
+              aria-label="Saiba mais sobre o ChinesOnline"
+            >
               Saiba mais
             </Button>
-            <Button variant="primary" aria-label="Baixar ChinesOnline na Google Play Store">
+            <Button
+              href="#download"
+              variant="primary"
+              aria-label="Baixar ChinesOnline na Google Play Store"
+            >
               Baixe agora
             </Button>
           </nav>
