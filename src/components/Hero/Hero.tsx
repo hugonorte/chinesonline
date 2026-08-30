@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
+import { Button } from '../Button/Button'
 import styles from './Hero.module.scss'
 import layer01 from '../../assets/hero/01.avif'
 import layer02 from '../../assets/hero/02.avif'
 import layer03 from '../../assets/hero/03.avif'
 import layer04 from '../../assets/hero/04.avif'
+import layer05 from '../../assets/hero/05.avif'
 
 export type HeroProps = {
   className?: string
@@ -14,6 +16,7 @@ const LAYERS = [
   { id: 2, src: layer02, parallaxFactor: 0.2, zIndex: 30 },
   { id: 3, src: layer03, parallaxFactor: 0.4, zIndex: 20 },
   { id: 4, src: layer04, parallaxFactor: 0.6, zIndex: 10 },
+  { id: 5, src: layer05, parallaxFactor: 0.8, zIndex: 60 },
 ]
 
 export function Hero({ className }: HeroProps) {
@@ -36,6 +39,7 @@ export function Hero({ className }: HeroProps) {
           <div
             key={layer.id}
             className={styles.layer}
+            data-layer-id={layer.id}
             style={{
               transform: `translateY(${scrollY * layer.parallaxFactor}px)`,
               zIndex: layer.zIndex,
@@ -52,6 +56,19 @@ export function Hero({ className }: HeroProps) {
         <div className={styles.overlay} />
       </div>
       <div className={styles.background} />
+      <div className={styles.content}>
+        <div className={styles.contentWrapper}>
+          <h1 className={styles.heroTitle}>
+            Decore<br />
+            Caracteres Chineses<br />
+            Jogando
+          </h1>
+          <div className={styles.buttons}>
+            <Button variant="secondary">Saiba mais</Button>
+            <Button variant="primary">Baixe agora</Button>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

@@ -1,5 +1,7 @@
 @use '../../styles/abstracts' as a;
 
+@import url('https://fonts.googleapis.com/css2?family=Atomic+Age&display=swap');
+
 .hero {
   position: relative;
   width: 100%;
@@ -37,6 +39,12 @@
   display: block;
 }
 
+[data-layer-id='4'] .layerImage,
+[data-layer-id='5'] .layerImage {
+  mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 25%, black 100%);
+}
+
 .overlay {
   position: absolute;
   top: 0;
@@ -55,4 +63,44 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: var(--space-16);
+  z-index: 100;
+  pointer-events: none;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.heroTitle {
+  font-family: 'Atomic Age', cursive;
+  color: white;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1.2;
+  max-width: 90%;
+}
+
+.buttons {
+  display: flex;
+  gap: var(--space-4);
+  pointer-events: auto;
+  flex-wrap: wrap;
+}
+
+.buttons :global(button),
+.buttons :global(a) {
+  white-space: nowrap;
 }

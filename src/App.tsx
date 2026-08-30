@@ -1,4 +1,5 @@
 import { Button } from './components/Button/Button'
+import { Features } from './components/Features/Features'
 import { Heading } from './components/Heading/Heading'
 import { Header } from './components/Header/Header'
 import { Hero } from './components/Hero/Hero'
@@ -35,6 +36,7 @@ function App() {
         action={<StoreBadge href={PLAY_STORE_URL} size="sm" />}
       />
       <Hero />
+      <Features />
       <Section>
         <Heading level={1}>chinesonline.com.br</Heading>
         <Text size="lg" tone="muted" measure>

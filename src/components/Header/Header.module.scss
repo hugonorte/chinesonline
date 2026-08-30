@@ -3,7 +3,7 @@
 .header {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   background: transparent !important;
 }
 
@@ -24,6 +24,10 @@
   --action-focus: var(--color-ink-0);
 }
 
+.scrolled {
+  background: #042529 !important;
+}
+
 .inner {
   display: flex;
   align-items: center;
@@ -37,7 +41,7 @@
   align-items: center;
   gap: var(--space-2);
   color: var(--fg-heading);
-  font-size: var(--text-lg);
+  font-size: calc(var(--text-lg) * 1.1);
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-tight);
   text-decoration: none;
@@ -45,7 +49,7 @@
   &:focus-visible { @include a.focus-ring(var(--action-focus)); }
 
   // O logo herda a cor daqui via currentColor.
-  svg { --logo-height: 1.5rem; }
+  svg { --logo-height: 1.65rem; }
 }
 
 .nav {
@@ -65,6 +69,12 @@
   font-size: var(--text-sm);
   text-decoration: none;
 
-  &:hover { color: var(--action-primary); }
+  &:hover { color: var(--color-action-900); }
   &:focus-visible { @include a.focus-ring; }
+}
+
+.action {
+  transition: transform 0.2s ease-in-out;
+
+  &:hover { transform: scale(1.05); }
 }

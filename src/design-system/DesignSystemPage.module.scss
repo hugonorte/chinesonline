@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: 1fr;
   min-height: 100svh;
+  background: #000;
 
   @include a.mq('lg') {
     grid-template-columns: 16rem 1fr;
