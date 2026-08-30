@@ -1,12 +1,12 @@
-import { Button } from './components/Button/Button'
+import { Cta } from './components/Cta/Cta'
+import { Faq } from './components/Faq/Faq'
 import { Features } from './components/Features/Features'
-import { Heading } from './components/Heading/Heading'
+import { Footer } from './components/Footer/Footer'
 import { Header } from './components/Header/Header'
 import { Hero } from './components/Hero/Hero'
 import { LogoBrand } from './components/LogoBrand/LogoBrand'
-import { Section } from './components/Section/Section'
+import { Screenshots } from './components/Screenshots/Screenshots'
 import { StoreBadge } from './components/StoreBadge/StoreBadge'
-import { Text } from './components/Text/Text'
 import { DesignSystemPage } from './design-system/DesignSystemPage'
 
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=br.com.chinesonline'
@@ -37,18 +37,10 @@ function App() {
       />
       <Hero />
       <Features />
-      <Section>
-        <Heading level={1}>chinesonline.com.br</Heading>
-        <Text size="lg" tone="muted" measure>
-          Placeholder. As seções do site ainda não existem — o que está pronto é o
-          design system que vai gerá-las.
-        </Text>
-        <div style={{ marginBlockStart: 'var(--space-6)' }}>
-          <Button href="/design-system" size="lg">
-            Abrir o design system
-          </Button>
-        </div>
-      </Section>
+      <Screenshots />
+      <Faq />
+      <Cta />
+      <Footer />
     </>
   )
 }

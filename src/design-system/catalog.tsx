@@ -422,16 +422,7 @@ export const catalog: CatalogEntry[] = [
     subtitle: 'Com os links legais exigidos pela Play Store',
     viewport: { width: 1100 },
     render: () => (
-      <Footer
-        brand="ChinesOnline"
-        tagline="Aprenda ideogramas chineses jogando, alguns minutos por dia."
-        links={[
-          { label: 'Política de privacidade', href: '/privacidade' },
-          { label: 'Termos de uso', href: '/termos' },
-          { label: 'Contato', href: '/contato' },
-        ]}
-        note="© 2026 ChinesOnline. Google Play e o logotipo do Google Play são marcas da Google LLC."
-      />
+      <Footer />
     ),
   },
   {

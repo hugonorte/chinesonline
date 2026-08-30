@@ -1,45 +1,182 @@
-import type { ReactNode } from 'react'
-import { Container } from '../Container/Container'
-import { cx } from '../../lib/cx'
+import { LogoBrand } from '../LogoBrand/LogoBrand'
 import styles from './Footer.module.scss'
 
 export type FooterProps = {
-  brand: ReactNode
-  tagline?: ReactNode
-  /**
-   * Privacidade e termos moram aqui. Não é decoração: o Google Play exige URL
-   * pública de política de privacidade para publicar o app.
-   */
-  links?: Array<{ label: string; href: string }>
-  note?: ReactNode
   className?: string
 }
 
-export function Footer({ brand, tagline, links = [], note, className }: FooterProps) {
-  return (
-    <footer className={cx(styles.footer, className)}>
-      <Container>
-        <div className={styles.inner}>
-          <div>
-            <p className={styles.brand}>{brand}</p>
-            {tagline && <p className={styles.tagline}>{tagline}</p>}
-          </div>
+export function Footer({ className }: FooterProps) {
+  const currentYear = new Date().getFullYear()
 
-          {links.length > 0 && (
-            <nav aria-label="Links institucionais">
-              <ul className={styles.links} role="list">
-                {links.map((link) => (
-                  <li key={link.href}>
-                    <a className={styles.link} href={link.href}>{link.label}</a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          )}
+  return (
+    <footer
+      className={`${styles.footer} ${className || ''}`}
+      itemScope
+      itemType="https://schema.org/Organization"
+    >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'ChinesOnline',
+            url: 'https://chinesonline.com.br',
+            logo: 'https://chinesonline.com.br/logo.png',
+            sameAs: [
+              'https://play.google.com/store/apps/details?id=br.com.chinesonline',
+              'https://twitter.com/chinesonline',
+              'https://instagram.com/chinesonline',
+            ],
+            contactPoint: {
+              '@type': 'ContactPoint',
+              contactType: 'Support',
+              email: 'support@chinesonline.com.br',
+            },
+          }),
+        }}
+      />
+
+      <div className={styles.container}>
+        {/* Coluna 1: Logo e Branding */}
+        <div className={styles.column}>
+          <div className={styles.logoSection}>
+            <LogoBrand />
+            <p className={styles.tagline} itemProp="description">
+              Aprenda caracteres chineses jogando
+            </p>
+          </div>
         </div>
 
-        {note && <p className={styles.note}>{note}</p>}
-      </Container>
+        {/* Coluna 2: Links de Navegação */}
+        <div className={styles.column}>
+          <nav className={styles.nav}>
+            <h3 className={styles.navTitle}>Navegação</h3>
+            <ul className={styles.navList}>
+              <li>
+                <a href="#" className={styles.navLink}>
+                  Página inicial
+                </a>
+              </li>
+              <li>
+                <a href="#features" className={styles.navLink}>
+                  Features
+                </a>
+              </li>
+              <li>
+                <a href="#screenshots" className={styles.navLink}>
+                  Screenshots
+                </a>
+              </li>
+              <li>
+                <a href="#faq" className={styles.navLink}>
+                  FAQ
+                </a>
+              </li>
+              <li>
+                <a href="#download" className={styles.navLink}>
+                  Download
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        {/* Coluna 3: Links Legais */}
+        <div className={styles.column}>
+          <nav className={styles.nav}>
+            <h3 className={styles.navTitle}>Legal</h3>
+            <ul className={styles.navList}>
+              <li>
+                <a href="/termos-de-uso" className={styles.navLink}>
+                  Termos de Uso
+                </a>
+              </li>
+              <li>
+                <a href="/privacidade" className={styles.navLink} itemProp="url">
+                  Política de Privacidade
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:support@chinesonline.com.br"
+                  className={styles.navLink}
+                  itemProp="email"
+                >
+                  Fale Conosco
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        {/* Coluna 4: Redes Sociais */}
+        <div className={styles.column}>
+          <div className={styles.extraSection}>
+            <h3 className={styles.navTitle}>Conecte-se</h3>
+            <div className={styles.socialLinks}>
+              <a
+                href="https://twitter.com/chinesonline"
+                className={styles.socialLink}
+                title="ChinesOnline no Twitter/X"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Siga-nos no Twitter/X"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.514l-5.106-6.683-5.845 6.683h-3.308l7.73-8.835L.424 2.25h6.679l4.882 6.479L17.75 2.25h.494zm-1.106 17.611h1.828L5.667 4.216H3.708l13.43 15.645z" />
+                </svg>
+              </a>
+
+              <a
+                href="https://instagram.com/chinesonline"
+                className={styles.socialLink}
+                title="ChinesOnline no Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Siga-nos no Instagram"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 0C5.373 0 0 5.373 0 12c0 6.627 5.373 12 12 12s12-5.373 12-12S18.627 0 12 0m0 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2m3.6 1.2c-.4 0-.8.4-.8.8s.4.8.8.8.8-.4.8-.8-.4-.8-.8-.8m-7.6 1.6c3.315 0 6 2.685 6 6s-2.685 6-6 6-6-2.685-6-6 2.685-6 6-6m0 2c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z" />
+                </svg>
+              </a>
+
+              <a
+                href="https://facebook.com/chinesonline"
+                className={styles.socialLink}
+                title="ChinesOnline no Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Siga-nos no Facebook"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                </svg>
+              </a>
+
+              <a
+                href="https://github.com/chinesonline"
+                className={styles.socialLink}
+                title="ChinesOnline no GitHub"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Siga-nos no GitHub"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Copyright */}
+      <div className={styles.copyright}>
+        <p>
+          &copy; {currentYear} <span itemProp="name">ChinesOnline</span> — Todos os direitos reservados
+        </p>
+      </div>
     </footer>
   )
 }

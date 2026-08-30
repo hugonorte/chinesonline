@@ -1,0 +1,155 @@
+@use '../../styles/abstracts' as a;
+
+@import url('https://fonts.googleapis.com/css2?family=Offside&display=swap');
+
+.cta {
+  position: relative;
+  width: 100%;
+  padding-block: var(--space-20) var(--space-24);
+  background: var(--color-ink-900);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  }
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 56rem;
+  margin: 0 auto;
+  padding-inline: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ================================================================ Header */
+.header {
+  margin-bottom: var(--space-16);
+
+  @include a.mq('md') {
+    margin-bottom: var(--space-20);
+  }
+}
+
+.heading {
+  font-family: 'Offside', cursive;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-ink-0);
+  margin: 0 0 1rem;
+}
+
+.description {
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+  max-width: 44rem;
+  margin-inline: auto;
+}
+
+/* ============================================================= Downloads */
+.downloadsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  width: 100%;
+  margin-bottom: var(--space-16);
+
+  @include a.mq('sm') {
+    gap: var(--space-6);
+  }
+
+  @include a.mq('md') {
+    flex-direction: row;
+    gap: var(--space-8);
+  }
+}
+
+/* Google Play Badge — Logo oficial */
+.googlePlayBadge {
+  transition: all 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.3));
+
+  &:hover {
+    filter: drop-shadow(0 12px 32px rgba(53, 164, 179, 0.25));
+    transform: translateY(-2px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-action-600);
+    outline-offset: 4px;
+    border-radius: 0.5rem;
+  }
+}
+
+/* Apple App Store — Em breve */
+.soonText {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: var(--weight-medium);
+  color: rgba(255, 165, 0, 0.9);
+  margin-top: var(--space-2);
+}
+
+/* StoreSoon component styling */
+.downloadsContainer :global(.soon) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 1.5rem;
+  border: 1px dashed rgba(255, 165, 0, 0.3);
+  border-radius: 1rem;
+  background: rgba(255, 165, 0, 0.03);
+  color: rgba(255, 165, 0, 0.8);
+}
+
+.downloadsContainer :global(.soonIcon) {
+  width: 1.75rem;
+  height: 1.75rem;
+  color: rgba(255, 165, 0, 0.6);
+}
+
+/* ============================================================= Disclaimer */
+.disclaimer {
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  width: 100%;
+  max-width: 44rem;
+
+  p {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.55);
+  }
+}
+
+/* ============================================================= Responsive */
+@media (prefers-reduced-motion: reduce) {
+  .googlePlayBadge {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
