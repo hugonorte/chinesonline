@@ -69,7 +69,7 @@
   font-size: var(--text-sm);
   text-decoration: none;
 
-  &:hover { color: var(--color-action-900); }
+  &:hover { color: var(--color-ink-700); }
   &:focus-visible { @include a.focus-ring; }
 }
 

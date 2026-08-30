@@ -30,8 +30,9 @@ function App() {
         links={[
           { label: 'Home', href: '#' },
           { label: 'Features', href: '#features' },
-          { label: 'Pricing', href: '#pricing' },
           { label: 'FAQ', href: '#faq' },
+          { label: 'Termos', href: '#termos-de-uso' },
+          { label: 'Privacidade', href: '#privacidade' },
         ]}
         action={<StoreBadge href={PLAY_STORE_URL} size="sm" />}
       />
