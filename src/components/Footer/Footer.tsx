@@ -78,6 +78,11 @@ export function Footer({ className }: FooterProps) {
                   Download
                 </a>
               </li>
+              <li>
+                <a href="/contact" className={styles.navLink}>
+                  Contato
+                </a>
+              </li>
             </ul>
           </nav>
         </div>

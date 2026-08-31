@@ -17,6 +17,7 @@ export function Privacy() {
           { label: 'Home', href: '/' },
           { label: 'Features', href: '/#features' },
           { label: 'FAQ', href: '/#faq' },
+          { label: 'Contato', href: '/contact' },
           { label: 'Termos', href: '/terms' },
           { label: 'Privacidade', href: '/privacy' },
         ]}

@@ -10,6 +10,7 @@ import { StoreBadge } from './components/StoreBadge/StoreBadge'
 import { DesignSystemPage } from './design-system/DesignSystemPage'
 import { Terms } from './pages/Terms'
 import { Privacy } from './pages/Privacy'
+import { Contact } from './pages/Contact'
 
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=br.com.chinesonline'
 
@@ -33,6 +34,10 @@ function App() {
     return <Privacy />
   }
 
+  if (window.location.pathname === '/contact') {
+    return <Contact />
+  }
+
   return (
     <>
       <Header
@@ -41,6 +46,7 @@ function App() {
           { label: 'Home', href: '#' },
           { label: 'Features', href: '#features' },
           { label: 'FAQ', href: '#faq' },
+          { label: 'Contato', href: '/contact' },
           { label: 'Termos', href: '/terms' },
           { label: 'Privacidade', href: '/privacy' },
         ]}
