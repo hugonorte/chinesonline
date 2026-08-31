@@ -88,12 +88,12 @@ export function Footer({ className }: FooterProps) {
             <h3 className={styles.navTitle}>Legal</h3>
             <ul className={styles.navList}>
               <li>
-                <a href="#termos-de-uso" className={styles.navLink}>
+                <a href="/terms" className={styles.navLink}>
                   Termos de Uso
                 </a>
               </li>
               <li>
-                <a href="#privacidade" className={styles.navLink} itemProp="url">
+                <a href="/privacy" className={styles.navLink} itemProp="url">
                   Política de Privacidade
                 </a>
               </li>

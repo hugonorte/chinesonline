@@ -8,6 +8,8 @@ import { LogoBrand } from './components/LogoBrand/LogoBrand'
 import { Screenshots } from './components/Screenshots/Screenshots'
 import { StoreBadge } from './components/StoreBadge/StoreBadge'
 import { DesignSystemPage } from './design-system/DesignSystemPage'
+import { Terms } from './pages/Terms'
+import { Privacy } from './pages/Privacy'
 
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=br.com.chinesonline'
 
@@ -21,6 +23,14 @@ const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=br.com.chi
 function App() {
   if (window.location.pathname.startsWith('/design-system')) {
     return <DesignSystemPage />
+  }
+
+  if (window.location.pathname === '/terms') {
+    return <Terms />
+  }
+
+  if (window.location.pathname === '/privacy') {
+    return <Privacy />
   }
 
   return (
