@@ -41,8 +41,8 @@ function App() {
           { label: 'Home', href: '#' },
           { label: 'Features', href: '#features' },
           { label: 'FAQ', href: '#faq' },
-          { label: 'Termos', href: '#termos-de-uso' },
-          { label: 'Privacidade', href: '#privacidade' },
+          { label: 'Termos', href: '/terms' },
+          { label: 'Privacidade', href: '/privacy' },
         ]}
         action={<StoreBadge href={PLAY_STORE_URL} size="sm" />}
       />
