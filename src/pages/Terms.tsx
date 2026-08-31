@@ -103,9 +103,12 @@ export function Terms() {
 
             {/* Pagamentos e Assinaturas */}
             <section className={styles.section}>
-              <h2>6. Pagamentos e Versão Premium</h2>
+              <h2>6. Versões do Aplicativo, Pagamentos e Anúncios</h2>
               <p>
-                O Aplicativo Premium está disponível mediante o pagamento de uma taxa única efetuada diretamente na Apple App Store ou Google Play Store. Não há cobrança de assinaturas recorrentes para este serviço. Todas as transações financeiras e faturamentos são processados exclusivamente pela loja de aplicativos correspondente e estão sujeitos aos Termos de Serviço e Políticas de Privacidade destas lojas.
+                <strong>Versão Gratuita (Lite) e Anúncios:</strong> A versão básica do aplicativo é disponibilizada gratuitamente e, em contrapartida, exibe anúncios publicitários fornecidos por redes de terceiros (como o Google AdMob). Ao utilizar a versão gratuita, você concorda com a exibição desses anúncios. Não endossamos nem nos responsabilizamos pelo conteúdo, produtos ou serviços oferecidos nos anúncios de terceiros.
+              </p>
+              <p>
+                <strong>Versão Premium:</strong> O Aplicativo Premium (sem anúncios) está disponível mediante o pagamento de uma taxa única efetuada diretamente na Apple App Store ou Google Play Store. Não há cobrança de assinaturas recorrentes para este serviço. Todas as transações financeiras e faturamentos são processados exclusivamente pela loja de aplicativos correspondente e estão sujeitos aos Termos de Serviço e Políticas de Privacidade destas lojas.
               </p>
             </section>
 

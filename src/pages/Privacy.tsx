@@ -67,6 +67,7 @@ export function Privacy() {
                 <li>Dados de uso: recursos acessados, tempo na aplicação, frequência de uso</li>
                 <li>Informações de rede: endereço IP, localização aproximada (país/região)</li>
                 <li>Cookies e tecnologias similares para operações essenciais do Aplicativo</li>
+                <li>Identificadores de publicidade (como IDFA no iOS e Advertising ID no Android) para exibição de anúncios na versão Lite</li>
               </ul>
               
               <h3 className={styles.subheading}>Dados Sensíveis e Pagamento</h3>
@@ -96,11 +97,9 @@ export function Privacy() {
 
             {/* Compartilhamento e Analytics */}
             <section className={styles.section}>
-              <h2>4. Compartilhamento de Dados e Terceiros</h2>
+              <h2>4. Compartilhamento de Dados, Terceiros e Anúncios</h2>
               <p>
-                Não vendemos, alugamos ou compartilhamos seus dados pessoais com terceiros para fins de marketing.
-                Além disso, <strong>não utilizamos bibliotecas de rastreamento de terceiros</strong> (como Google Analytics, Crashlytics, ou similares) no aplicativo.
-                Podemos compartilhar dados apenas nas seguintes circunstâncias limitadas:
+                Podemos compartilhar dados nas seguintes circunstâncias limitadas:
               </p>
               <ul className={styles.list}>
                 <li>
@@ -115,9 +114,15 @@ export function Privacy() {
                   <strong>Proteção de Direitos:</strong> Divulgaremos dados para proteger nossos direitos, privacidade,
                   segurança ou propriedade.
                 </li>
+                <li>
+                  <strong>Redes de Publicidade (Google AdMob):</strong> A versão "Lite" (gratuita) do aplicativo é suportada por anúncios fornecidos pelo Google AdMob. O AdMob coleta e processa informações como o seu endereço IP e identificadores de publicidade (IDFA/Advertising ID) para fornecer anúncios, prevenir fraudes e gerar estatísticas. Para mais informações sobre como o Google utiliza esses dados, consulte a <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className={styles.link}>Política de Privacidade do Google</a>.
+                </li>
               </ul>
               <p>
-                <strong>Rastreamento e Publicidade (App Tracking Transparency):</strong> Nós não rastreamos suas atividades através de aplicativos e sites de terceiros, e não compartilhamos seus dados com corretores de dados (data brokers) ou redes de publicidade para fins de marketing direcionado.
+                <strong>Rastreamento e Publicidade (App Tracking Transparency - iOS):</strong> Em dispositivos iOS, solicitaremos a sua permissão explícita (via prompt do sistema) antes de acessar o seu identificador de publicidade para fins de anúncios personalizados. Se você recusar, os anúncios ainda serão exibidos, mas poderão ser menos relevantes para os seus interesses. No Android, você pode gerenciar suas preferências de personalização de anúncios diretamente nas configurações da sua conta Google/dispositivo.
+              </p>
+              <p>
+                Ressaltamos que não vendemos seus dados pessoais para corretores de dados (data brokers) e não utilizamos seus dados de progressão de estudo para fins de marketing ou direcionamento de anúncios.
               </p>
             </section>
 
