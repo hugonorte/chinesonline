@@ -106,9 +106,10 @@
   /* Autofill styling */
   &:-webkit-autofill,
   &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.04) inset !important;
-    -webkit-text-fill-color: rgba(40, 5, 5, 0.087) !important;
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.95) !important;
     border-color: rgba(255, 255, 255, 0.12) !important;
   }
 }
