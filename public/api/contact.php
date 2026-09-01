@@ -69,14 +69,23 @@ else {
     // Ex: __DIR__ . '/../../.env' para colocar na raiz do projeto (fora do public_html)
     $envPath = __DIR__ . '/../../.env'; 
     if (file_exists($envPath)) {
-        // parse_ini_file consegue ler arquivos .env simples no formato CHAVE=VALOR
-        $envVars = parse_ini_file($envPath);
-        if (isset($envVars['CHINESONLINE_MAIL_PASSWORD'])) {
-            $password = $envVars['CHINESONLINE_MAIL_PASSWORD'];
+        // Em hospedagens, parse_ini_file pode dar erro se a senha contiver caracteres especiais como ~ ou |
+        $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($lines as $line) {
+            if (strpos(trim($line), '#') === 0) continue; // Ignora comentários
+            if (strpos($line, '=') !== false) {
+                list($key, $val) = explode('=', $line, 2);
+                $key = trim($key);
+                $val = trim($val, " \t\n\r\0\x0B\"'"); // Remove aspas e espaços
+                
+                if ($key === 'CHINESONLINE_MAIL_PASSWORD') {
+                    $password = $val;
+                    break;
+                }
+            }
         }
     }
 }
-
 if (empty($password)) {
     http_response_code(500);
     echo json_encode(["error" => "Email configuration missing."]);
