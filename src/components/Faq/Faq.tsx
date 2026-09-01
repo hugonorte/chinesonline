@@ -102,7 +102,7 @@ export function Faq({ className }: FaqProps) {
             potentialAction: {
               '@type': 'ContactAction',
               name: 'Contato de Suporte',
-              target: 'support@chinesonline.com.br',
+              target: 'support@mail.chinesonline.com.br',
             },
           }),
         }}
@@ -184,7 +184,7 @@ export function Faq({ className }: FaqProps) {
         <footer className={styles.footer}>
           <p>{t('faq.notFoundQuestion')}</p>
           <a
-            href="mailto:support@chinesonline.com.br"
+            href="mailto:support@mail.chinesonline.com.br"
             className={styles.supportLink}
             itemProp="email"
             rel="noopener noreferrer"

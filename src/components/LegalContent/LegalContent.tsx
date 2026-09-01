@@ -91,7 +91,7 @@ export function LegalContent({ type }: LegalContentProps) {
           <p>{content.accountDeletion}</p>
           <ul className={styles.list}>
             <li><strong>{content.deleteInApp}</strong></li>
-            <li><strong>{content.deleteByEmail}</strong> <a href="mailto:support@chinesonline.com.br" className={styles.link}>support@chinesonline.com.br</a>.</li>
+            <li><strong>{content.deleteByEmail}</strong> <a href="mailto:support@mail.chinesonline.com.br" className={styles.link}>support@mail.chinesonline.com.br</a>.</li>
           </ul>
           <p>{content.deletionTimeline}</p>
         </section>
@@ -106,7 +106,7 @@ export function LegalContent({ type }: LegalContentProps) {
             <li><strong>{content.portabilityRight}</strong></li>
             <li><strong>{content.objectionRight}</strong></li>
           </ul>
-          <p>{content.exerciseRights} <a href="mailto:support@chinesonline.com.br" className={styles.link}>support@chinesonline.com.br</a>.</p>
+          <p>{content.exerciseRights} <a href="mailto:support@mail.chinesonline.com.br" className={styles.link}>support@mail.chinesonline.com.br</a>.</p>
         </section>
 
         <section className={styles.section}>
@@ -122,7 +122,7 @@ export function LegalContent({ type }: LegalContentProps) {
         <section className={styles.section}>
           <h2>{content.section10}</h2>
           <p>{content.contactUs}</p>
-          <p><strong>{content.email}</strong> <a href="mailto:support@chinesonline.com.br" className={styles.link}>support@chinesonline.com.br</a></p>
+          <p><strong>{content.email}</strong> <a href="mailto:support@mail.chinesonline.com.br" className={styles.link}>support@mail.chinesonline.com.br</a></p>
           <p><strong>{content.address}</strong></p>
         </section>
       </article>
@@ -218,7 +218,7 @@ export function LegalContent({ type }: LegalContentProps) {
 
       <section className={styles.section}>
         <h2>{content.section14}</h2>
-        <p>{content.contactUsTerms} <a href="mailto:support@chinesonline.com.br" className={styles.link}>support@chinesonline.com.br</a></p>
+        <p>{content.contactUsTerms} <a href="mailto:support@mail.chinesonline.com.br" className={styles.link}>support@mail.chinesonline.com.br</a></p>
       </section>
     </article>
   )

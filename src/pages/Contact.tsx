@@ -31,7 +31,7 @@ export function Contact() {
               <div className={styles.contactInfo}>
                 <div className={styles.infoItem}>
                   <h3 className={styles.infoTitle}>{t('contact.email')}</h3>
-                  <a href="mailto:support@chinesonline.com.br" className={styles.infoLink}>
+                  <a href="mailto:support@mail.chinesonline.com.br" className={styles.infoLink}>
                     {t('contact.supportEmail')}
                   </a>
                 </div>

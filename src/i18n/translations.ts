@@ -127,7 +127,7 @@ export const translations = {
       description:
         'Tem dúvidas sobre o ChinesOnline? Encontrou um bug? Quer sugerir uma nova feature? Entre em contato conosco! Respondemos todas as mensagens dentro de 24 horas.',
       email: 'Email',
-      supportEmail: 'support@chinesonline.com.br',
+      supportEmail: 'support@mail.chinesonline.com.br',
       socialNetworks: 'Redes Sociais',
       response: 'Resposta',
       responseText: 'Respondemos a todos os emails dentro de 24 horas úteis. Se não receber resposta, verifique a pasta de spam.',
@@ -322,7 +322,7 @@ export const translations = {
       description:
         '¿Preguntas sobre ChinesOnline? ¿Encontraste un error? ¿Quieres sugerir una nueva característica? ¡Contáctanos! Respondemos a todos los mensajes en 24 horas.',
       email: 'Correo electrónico',
-      supportEmail: 'support@chinesonline.com.br',
+      supportEmail: 'support@mail.chinesonline.com.br',
       socialNetworks: 'Redes Sociales',
       response: 'Respuesta',
       responseText:
@@ -516,7 +516,7 @@ export const translations = {
       description:
         'Questions about ChinesOnline? Found a bug? Want to suggest a new feature? Get in touch with us! We respond to all messages within 24 hours.',
       email: 'Email',
-      supportEmail: 'support@chinesonline.com.br',
+      supportEmail: 'support@mail.chinesonline.com.br',
       socialNetworks: 'Social Networks',
       response: 'Response',
       responseText:

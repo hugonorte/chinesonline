@@ -33,7 +33,7 @@ export function Footer({ className }: FooterProps) {
             contactPoint: {
               '@type': 'ContactPoint',
               contactType: 'Support',
-              email: 'support@chinesonline.com.br',
+              email: 'support@mail.chinesonline.com.br',
             },
           }),
         }}
@@ -106,7 +106,7 @@ export function Footer({ className }: FooterProps) {
               </li>
               <li>
                 <a
-                  href="mailto:support@chinesonline.com.br"
+                  href="mailto:support@mail.chinesonline.com.br"
                   className={styles.navLink}
                   itemProp="email"
                 >
