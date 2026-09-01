@@ -99,6 +99,12 @@ if (empty($password)) {
 $mail = new PHPMailer(true);
 
 try {
+    // Habilitando debug do SMTP para log
+    $mail->SMTPDebug = 3;
+    $mail->Debugoutput = function($str, $level) {
+        file_put_contents(__DIR__ . '/smtp_debug.log', gmdate('Y-m-d H:i:s') . " | $level | $str\n", FILE_APPEND);
+    };
+
     // Configurações do Servidor SMTP (Hostinger)
     $mail->isSMTP();
     $mail->Host       = 'smtp.hostinger.com'; // Servidor SMTP da Hostinger
@@ -112,7 +118,7 @@ try {
     $mail->setFrom('support@mail.chinesonline.com.br', 'Site Principal ChinesOnline');
     $mail->addAddress('hugonorte@gmail.com'); // Para quem vai o e-mail (você mesmo ou o suporte)
     $mail->addAddress('support@mail.chinesonline.com.br'); // Cópia para a caixa de entrada do suporte
-    $mail->addReplyTo($email, $name); // Se você clicar em 'Responder', vai para o e-mail do cliente
+    // $mail->addReplyTo($email, $name); // COMENTADO TEMPORARIAMENTE PARA DEBUG
 
     // Conteúdo
     $mail->isHTML(true);
