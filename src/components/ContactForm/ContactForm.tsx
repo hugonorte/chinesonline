@@ -89,7 +89,7 @@ export function ContactForm({ className }: ContactFormProps) {
 
     try {
       // Send form data to backend
-      const response = await fetch('/api/contact', {
+      const response = await fetch('/api/contact.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -117,6 +117,7 @@ export function ContactForm({ className }: ContactFormProps) {
         setErrorMessage(t('contact.formError'))
       }
     } catch (error) {
+      console.error('Contact form submission error:', error)
       setStatus('error')
       setErrorMessage(t('contact.formErrorConnection'))
     }
