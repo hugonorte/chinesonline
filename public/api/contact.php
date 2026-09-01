@@ -51,10 +51,10 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     exit();
 }
 
-// Carregar o autoloader do Composer (Para o PHPMailer)
-// Você precisará instalar o PHPMailer no servidor executando `composer require phpmailer/phpmailer`
-// Ou incluir os arquivos manualmente se não usar o Composer.
-require __DIR__ . '/vendor/autoload.php';
+// Carregar os arquivos do PHPMailer manualmente
+require __DIR__ . '/PHPMailer/Exception.php';
+require __DIR__ . '/PHPMailer/PHPMailer.php';
+require __DIR__ . '/PHPMailer/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
