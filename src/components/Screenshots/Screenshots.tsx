@@ -1,36 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
+import { useI18n } from '../../i18n/i18nContext'
 import styles from './Screenshots.module.scss'
 import loginImg from '../../assets/screenshots/login.webp'
 import quizImg from '../../assets/screenshots/quiz.webp'
 
-type ScreenshotItem = {
-  id: string
-  title: string
-  subtitle: string
-  badge: string
-  image: string
-  description: string
-}
-
-const SCREENSHOTS: ScreenshotItem[] = [
-  {
-    id: 'login',
-    title: 'Comece sua jornada',
-    subtitle: 'Acesso rápido e seguro',
-    badge: 'Tela de acesso',
-    image: loginImg,
-    description:
-      'Autenticação inteligente com suporte para múltiplos idiomas. Escolha entre espanhol ou inglês ao iniciar.',
-  },
-  {
-    id: 'quiz',
-    title: 'Aprenda jogando',
-    subtitle: 'Quiz interativo e envolvente',
-    badge: 'Tela de quiz',
-    image: quizImg,
-    description:
-      'Responda perguntas sobre caracteres chineses de forma divertida. Ganhe XP e suba de nível.',
-  },
+const SCREENSHOTS_CONFIG: Array<{ id: string; titleKey: string; subtitleKey: string; image: string }> = [
+  { id: 'login', titleKey: 'screenshots.screenshot1Title', subtitleKey: 'screenshots.screenshot1Subtitle', image: loginImg },
+  { id: 'quiz', titleKey: 'screenshots.screenshot2Title', subtitleKey: 'screenshots.screenshot2Subtitle', image: quizImg },
 ]
 
 export type ScreenshotsProps = {
@@ -42,10 +18,17 @@ const PARALLAX_FACTOR = 0.5
 const PARALLAX_MAX_PX = 28
 
 export function Screenshots({ className }: ScreenshotsProps) {
+  const { t } = useI18n()
   const [currentIndex, setCurrentIndex] = useState(0)
   const visualRef = useRef<HTMLDivElement>(null)
   const [parallaxY, setParallaxY] = useState(0)
   const carouselRef = useRef<HTMLDivElement>(null)
+
+  const SCREENSHOTS = SCREENSHOTS_CONFIG.map((item) => ({
+    ...item,
+    title: t(item.titleKey),
+    subtitle: t(item.subtitleKey),
+  }))
 
   /**
    * Parallax discreto: mede a distância do centro do visual até o centro da
@@ -135,7 +118,6 @@ export function Screenshots({ className }: ScreenshotsProps) {
             associatedMedia: SCREENSHOTS.map((item) => ({
               '@type': 'MediaObject',
               name: item.title,
-              description: item.description,
               url: item.image,
             })),
           }),
@@ -146,11 +128,8 @@ export function Screenshots({ className }: ScreenshotsProps) {
         {/* Cabeçalho semântico com título e propósito da seção */}
         <header className={styles.header}>
           <div className={styles.headerText}>
-            <h2 className={styles.title}>Interface Intuitiva. Experiência Imersiva.</h2>
-            <p className={styles.subtitle}>
-              Descubra como o ChinesOnline transforma o aprendizado em uma experiência
-              divertida e envolvente. Cada tela foi projetada para maximizar seu aprendizado.
-            </p>
+            <h2 className={styles.title}>{t('screenshots.title')}</h2>
+            <p className={styles.subtitle}>{t('screenshots.subtitle')}</p>
           </div>
         </header>
 
@@ -181,9 +160,6 @@ export function Screenshots({ className }: ScreenshotsProps) {
 
               {/* Subtítulo como context/eyebrow */}
               <p className={styles.cardEyebrow}>{current.subtitle}</p>
-
-              {/* Descrição principal — SEO-friendly */}
-              <p className={styles.cardDescription}>{current.description}</p>
 
               {/* Rodapé com título e navegação */}
               <div className={styles.cardFooter}>
@@ -222,12 +198,12 @@ export function Screenshots({ className }: ScreenshotsProps) {
               </div>
 
               {/* Mockup de telefone com screenshot */}
-              <figure className={styles.phoneMockup} role="img" aria-label={`Telefone exibindo: ${current.title}`}>
+              <figure className={styles.phoneMockup} role="img" aria-label={`Telefone exibindo: ${current.title || ''}`}>
                 <div className={styles.phoneNotch} aria-hidden="true" />
                 <div className={styles.phoneScreen}>
                   <img
                     src={current.image}
-                    alt={`Screenshot do ${current.title.toLowerCase()}: ${current.subtitle.toLowerCase()}`}
+                    alt={`Screenshot do ${(current.title || '').toLowerCase()}: ${(current.subtitle || '').toLowerCase()}`}
                     className={styles.phoneImage}
                     loading="lazy"
                   />
@@ -237,7 +213,7 @@ export function Screenshots({ className }: ScreenshotsProps) {
                 {/* Badge de status — visual indicator */}
                 <figcaption className={styles.visualBadge}>
                   <i className={styles.visualBadgeDot} aria-hidden="true" />
-                  <span>{current.badge}</span>
+                  <span>{current.id === 'login' ? 'Tela de acesso' : 'Tela de quiz'}</span>
                 </figcaption>
               </figure>
             </div>

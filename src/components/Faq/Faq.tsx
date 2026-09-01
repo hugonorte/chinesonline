@@ -1,82 +1,42 @@
 import { useEffect, useRef, useState } from 'react'
+import { useI18n } from '../../i18n/i18nContext'
 import styles from './Faq.module.scss'
 
 type FaqItem = {
   id: string
+  questionKey: string
+  answerKey: string
+}
+
+const FAQ_CONFIG: FaqItem[] = [
+  { id: 'q1', questionKey: 'faq.faqQuestion1', answerKey: 'faq.faqAnswer1' },
+  { id: 'q2', questionKey: 'faq.faqQuestion2', answerKey: 'faq.faqAnswer2' },
+  { id: 'q3', questionKey: 'faq.faqQuestion3', answerKey: 'faq.faqAnswer3' },
+  { id: 'q4', questionKey: 'faq.faqQuestion4', answerKey: 'faq.faqAnswer4' },
+  { id: 'q5', questionKey: 'faq.faqQuestion5', answerKey: 'faq.faqAnswer5' },
+  { id: 'q6', questionKey: 'faq.faqQuestion6', answerKey: 'faq.faqAnswer6' },
+]
+
+type FaqItemRender = {
+  id: string
   question: string
   answer: string
 }
-
-const FAQ_ITEMS: FaqItem[] = [
-  {
-    id: 'compatibility',
-    question: 'O ChinesOnline funciona no meu celular?',
-    answer:
-      'Sim! O ChinesOnline está disponível para Android (versão 8.0 ou superior) na Google Play Store. Contamos com versão iOS em desenvolvimento. O app funciona em qualquer smartphone com navegador moderno, ocupando cerca de 45MB de espaço.',
-  },
-  {
-    id: 'offline',
-    question: 'Posso usar o app sem conexão com a internet?',
-    answer:
-      'Sim! O ChinesOnline oferece modo offline completo. Após baixar o conteúdo, você pode estudar em qualquer lugar — no metrô, viagem ou em áreas sem sinal. Sua progressão é sincronizada automaticamente assim que você se conectar novamente.',
-  },
-  {
-    id: 'languages',
-    question: 'Em quais idiomas o app ChinesOnline está disponível?',
-    answer:
-      'O ChinesOnline está disponível em português (Brasil), inglês e espanhol. Você escolhe o idioma na primeira vez que abre o app e pode alterá-lo a qualquer momento nas configurações. O conteúdo de aprendizado é o mesmo em todos os idiomas.',
-  },
-  {
-    id: 'lite-vs-premium',
-    question: 'Qual é a diferença entre a versão Lite e Premium?',
-    answer:
-      'A versão Lite (gratuita) oferece acesso a lições básicas com até 50 caracteres chineses e flashcards limitados. O Premium (US$ 19,00, pagamento único) desbloqueia o catálogo completo com 3.000+ caracteres, pronúncia nativa de falantes chineses, estatísticas avançadas, sincronização em nuvem e atualizações vitalícias.',
-  },
-  {
-    id: 'payment',
-    question: 'Como funciona o pagamento do Premium?',
-    answer:
-      'É um pagamento único — você compra uma vez por US$ 19,00 e tem acesso vitalício ao Premium. Sem assinaturas, sem renovações automáticas, sem cobranças recorrentes. O pagamento é processado diretamente pela Google Play Store com todas as garantias de segurança.',
-  },
-  {
-    id: 'pronunciation',
-    question: 'Como aprender pronúncia correta dos caracteres chineses?',
-    answer:
-      'Cada caractere no app vem com áudio nativo gravado por falantes nativos de mandarim. Na versão Premium, você acessa pronúncia em pinyin (romanização) e tons de Mandarim. Pode ouvir quantas vezes precisar e praticar com reconhecimento de voz (funcionalidade em breve).',
-  },
-  {
-    id: 'algorithm',
-    question: 'Como funciona o algoritmo de aprendizado?',
-    answer:
-      'O ChinesOnline usa repetição espaçada baseada na Curva do Esquecimento de Ebbinghaus, uma técnica científica comprovada para retenção de memória de longo prazo. O app aprende seu ritmo de aprendizado, prioriza caracteres que você esqueceu e sugere revisões no momento perfeito para fixar na memória.',
-  },
-  {
-    id: 'progress-sync',
-    question: 'Posso sincronizar meu progresso entre dispositivos?',
-    answer:
-      'Sim! Na versão Premium, seu progresso é sincronizado automaticamente entre todos seus dispositivos via nuvem. Comece a estudar no smartphone, continue no tablet e finalize no computador sem perder nada. Na versão Lite, a sincronização fica local ao dispositivo.',
-  },
-  {
-    id: 'reset-data',
-    question: 'Como faço para resetar meu progresso ou deletar meus dados?',
-    answer:
-      'Você pode resetar seu progresso de aprendizado a qualquer momento nas configurações do app, voltando para o início sem perder a conta. Seus dados pessoais podem ser deletados completamente enviando uma solicitação ao suporte. Levamos sua privacidade a sério — confira nossa Política de Privacidade para detalhes.',
-  },
-  {
-    id: 'support',
-    question: 'Como faço para contatar o suporte do ChinesOnline?',
-    answer:
-      'Dúvidas ou problemas técnicos? Abra o app, vá em Configurações → Suporte ou envie um email para support@chinesonline.com.br. Respondemos em até 24 horas em dias úteis. Também estamos disponíveis em redes sociais para dúvidas rápidas.',
-  },
-]
 
 export type FaqProps = {
   className?: string
 }
 
 export function Faq({ className }: FaqProps) {
+  const { t } = useI18n()
   const [openId, setOpenId] = useState<string | null>(null)
   const accordionRef = useRef<HTMLDivElement>(null)
+
+  const FAQ_ITEMS: FaqItemRender[] = FAQ_CONFIG.map((item) => ({
+    ...item,
+    question: t(item.questionKey),
+    answer: t(item.answerKey),
+  }))
 
   /**
    * Suporta navegação com teclado em accordion:
@@ -152,11 +112,10 @@ export function Faq({ className }: FaqProps) {
         {/* Cabeçalho semântico com hierarquia clara */}
         <header className={styles.header}>
           <h2 className={styles.title} id="faq-heading">
-            Perguntas Frequentes sobre o ChinesOnline
+            {t('faq.title')}
           </h2>
           <p className={styles.subtitle}>
-            Encontre respostas sobre compatibilidade, funcionalidades, planos e suporte técnico do app de aprendizado de
-            caracteres chineses.
+            {t('faq.subtitle')}
           </p>
         </header>
 
@@ -223,16 +182,16 @@ export function Faq({ className }: FaqProps) {
 
         {/* Seção de suporte com ContactPoint schema */}
         <footer className={styles.footer}>
-          <p>Não encontrou a resposta que procura?</p>
+          <p>{t('faq.notFoundQuestion')}</p>
           <a
             href="mailto:support@chinesonline.com.br"
             className={styles.supportLink}
             itemProp="email"
             rel="noopener noreferrer"
           >
-            Entre em contato conosco
+            {t('faq.contactSupport')}
           </a>
-          <p className={styles.supportDetail}>Respondemos em até 24 horas em dias úteis</p>
+          <p className={styles.supportDetail}>{t('faq.supportDetail')}</p>
         </footer>
       </div>
     </section>

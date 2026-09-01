@@ -29,3 +29,6 @@ dist-ssr
 
 # previews gerados por `pnpm ds:build` (regeneraveis)
 ds-preview
+
+# Agentes AI
+.agents/

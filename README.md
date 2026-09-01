@@ -1,75 +1,45 @@
-# React + TypeScript + Vite
+# Frontend do site ChinesOnline
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Sobre o Projeto
+Repositório contendo o código-fonte do Frontend do site oficial do [ChinesOnline](https://chinesonline.com.br). O projeto é uma Single Page Application (SPA) projetada para ser rápida, responsiva e de fácil manutenção, com foco em uma experiência de usuário premium.
 
-Currently, two official plugins are available:
+## Stack do Frontend
+Este projeto foi desenvolvido utilizando as seguintes tecnologias:
+- **React** (v19)
+- **TypeScript**
+- **Vite** (Build Tool e Dev Server)
+- **Tailwind CSS** (Estilização)
+- **SCSS** (Estilos globais e complementares)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Como fazer o setup local do projeto
 
-## React Compiler
+Siga os passos abaixo para rodar o projeto localmente em sua máquina.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Pré-requisitos
+- **Node.js** (versão 22 ou superior recomendada)
+- **npm** (gerenciador de pacotes padrão)
 
-## Expanding the ESLint configuration
+### Instalação e Execução
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. **Clone o repositório:**
+   ```bash
+   git clone <URL-DO-REPOSITORIO>
+   cd siteprincipal
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+3. **Inicie o servidor de desenvolvimento:**
+   ```bash
+   npm run dev
+   ```
+   O servidor iniciará localmente (normalmente em `http://localhost:5173`).
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+### Build para Produção
+Para compilar o projeto para produção (gerando os arquivos estáticos na pasta `dist/`), execute:
+```bash
+npm run build
 ```

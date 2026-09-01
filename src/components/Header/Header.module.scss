@@ -54,13 +54,15 @@
 
 .nav {
   display: none;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
 
   // Landing de app tem poucas âncoras: abaixo de md elas somem e sobra o CTA,
   // que é o que a página quer de qualquer forma. Sem hambúrguer, sem JS.
   @include a.mq('md') {
     display: flex;
-    align-items: center;
-    gap: var(--space-6);
   }
 }
 
@@ -73,8 +75,199 @@
   &:focus-visible { @include a.focus-ring; }
 }
 
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+
+  @include a.mq('md') {
+    gap: var(--space-4);
+  }
+}
+
+.languageSelector {
+  padding: var(--space-2) var(--space-3);
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  color: var(--fg-body);
+  font-size: var(--text-sm);
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-transform: uppercase;
+
+  &:hover {
+    color: var(--fg-heading);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  /* Estilizar as opções no dropdown */
+  option {
+    background-color: var(--color-teal-600);
+    color: white;
+
+    &:hover,
+    &:checked {
+      background-color: var(--color-teal-900);
+      color: white;
+    }
+  }
+}
+
 .action {
   transition: transform 0.2s ease-in-out;
 
   &:hover { transform: scale(1.05); }
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  gap: 6px;
+  color: var(--fg-heading);
+  padding: 0;
+  padding-right: var(--space-2);
+
+  @include a.mq('md') {
+    display: none;
+  }
+}
+
+.hamburgerLine {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: currentColor;
+  transition: all 0.3s ease-in-out;
+  transform-origin: center;
+}
+
+.hamburger[aria-expanded='true'] .hamburgerLine {
+  &:nth-child(1) {
+    transform: rotate(45deg) translateY(10px);
+  }
+
+  &:nth-child(2) {
+    opacity: 0;
+  }
+
+  &:nth-child(3) {
+    transform: rotate(-45deg) translateY(-10px);
+  }
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 320px;
+  height: 100vh;
+  background: var(--surface-page);
+  z-index: 1001;
+  transition: right 0.3s ease-in-out;
+  overflow-y: auto;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+
+  @include a.mq('md') {
+    display: none;
+    pointer-events: none;
+  }
+
+  &.open {
+    right: 0;
+  }
+}
+
+.mobileMenuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.mobileMenuContent {
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.mobileLogo {
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.mobileLanguageSelector {
+  padding: var(--space-2) var(--space-3);
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  color: var(--fg-body);
+  font-size: var(--text-sm);
+  font-family: inherit;
+  cursor: pointer;
+  width: 100%;
+  text-transform: uppercase;
+
+  /* Estilizar as opções no dropdown */
+  option {
+    background-color: var(--color-teal-600);
+    color: white;
+
+    &:hover,
+    &:checked {
+      background-color: var(--color-teal-900);
+      color: white;
+    }
+  }
+}
+
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.mobileLink {
+  color: var(--fg-body);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  padding: var(--space-2) 0;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--fg-heading);
+    padding-left: var(--space-2);
+  }
+
+  &:focus-visible {
+    outline: none;
+    color: var(--fg-heading);
+  }
 }

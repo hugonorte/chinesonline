@@ -1,3 +1,4 @@
+import { I18nProvider } from './i18n/i18nContext'
 import { Cta } from './components/Cta/Cta'
 import { Faq } from './components/Faq/Faq'
 import { Features } from './components/Features/Features'
@@ -6,13 +7,10 @@ import { Header } from './components/Header/Header'
 import { Hero } from './components/Hero/Hero'
 import { LogoBrand } from './components/LogoBrand/LogoBrand'
 import { Screenshots } from './components/Screenshots/Screenshots'
-import { StoreBadge } from './components/StoreBadge/StoreBadge'
 import { DesignSystemPage } from './design-system/DesignSystemPage'
 import { Terms } from './pages/Terms'
 import { Privacy } from './pages/Privacy'
 import { Contact } from './pages/Contact'
-
-const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=br.com.chinesonline'
 
 /**
  * Roteamento provisório por pathname — o site ainda não tem router.
@@ -21,7 +19,7 @@ const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=br.com.chi
  * Em dev o Vite serve o index.html para qualquer rota (fallback SPA), então
  * /design-system funciona direto. Em produção precisa de rewrite no host.
  */
-function App() {
+function AppContent() {
   if (window.location.pathname.startsWith('/design-system')) {
     return <DesignSystemPage />
   }
@@ -40,18 +38,7 @@ function App() {
 
   return (
     <>
-      <Header
-        brand={<LogoBrand />}
-        links={[
-          { label: 'Home', href: '#' },
-          { label: 'Features', href: '#features' },
-          { label: 'FAQ', href: '#faq' },
-          { label: 'Contato', href: '/contact' },
-          { label: 'Termos', href: '/terms' },
-          { label: 'Privacidade', href: '/privacy' },
-        ]}
-        action={<StoreBadge href={PLAY_STORE_URL} size="sm" />}
-      />
+      <Header brand={<LogoBrand />} />
       <Hero />
       <Features />
       <Screenshots />
@@ -59,6 +46,14 @@ function App() {
       <Cta />
       <Footer />
     </>
+  )
+}
+
+function App() {
+  return (
+    <I18nProvider>
+      <AppContent />
+    </I18nProvider>
   )
 }
 

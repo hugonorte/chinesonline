@@ -377,10 +377,6 @@ export const catalog: CatalogEntry[] = [
     render: () => (
       <Header
         brand={<LogoBrand />}
-        links={[
-          { label: 'Política de Privacidade', href: '/privacy' },
-          { label: 'Termos de uso', href: '/terms' },
-        ]}
         action={<Button size="sm">Download</Button>}
       />
     ),

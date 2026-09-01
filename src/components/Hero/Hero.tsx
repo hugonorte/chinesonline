@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useI18n } from '../../i18n/i18nContext'
 import { Button } from '../Button/Button'
 import styles from './Hero.module.scss'
 import layer01 from '../../assets/hero/01.avif'
@@ -20,6 +21,7 @@ const LAYERS = [
 ]
 
 export function Hero({ className }: HeroProps) {
+  const { t } = useI18n()
   const containerRef = useRef<HTMLDivElement>(null)
   const [scrollY, setScrollY] = useState(0)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
@@ -52,7 +54,7 @@ export function Hero({ className }: HeroProps) {
     <section
       ref={containerRef}
       className={`${styles.hero} ${className || ''}`}
-      aria-label="Seção principal do ChinesOnline"
+      aria-label={t('hero.heroSection')}
       itemScope
       itemType="https://schema.org/WebPage"
     >
@@ -63,8 +65,7 @@ export function Hero({ className }: HeroProps) {
             '@context': 'https://schema.org',
             '@type': 'SoftwareApplication',
             name: 'ChinesOnline',
-            description:
-              'Aprenda caracteres chineses jogando. Um app gamificado com algoritmo de repetição espaçada para aprendizado eficaz.',
+            description: t('hero.description'),
             url: 'https://chinesonline.com.br',
             applicationCategory: 'EducationalApplication',
             offers: {
@@ -116,39 +117,38 @@ export function Hero({ className }: HeroProps) {
         <div className={styles.contentWrapper}>
           {/* Título principal como H1 — hierarquia clara */}
           <h1 className={styles.heroTitle} itemProp="headline">
-            Decore Caracteres Chineses Jogando
+            {t('hero.title')}
             <br />
-            <span className={styles.heroSubtitle}>com ChinesOnline</span>
+            <span className={styles.heroSubtitle}>{t('hero.subtitle')}</span>
           </h1>
 
           {/* Subtítulo com proposição de valor */}
           <p className={styles.heroDescription} itemProp="description">
-            Aprenda mandarim através de gamificação inteligente. Repetição espaçada baseada em neurociência, pronúncia
-            nativa e 3.000+ caracteres para dominar.
+            {t('hero.description')}
           </p>
 
           {/* CTAs com acessibilidade */}
-          <nav className={styles.buttons} aria-label="Ações principais">
+          <nav className={styles.buttons} aria-label={t('hero.mainActions')}>
             <Button
               href="#features"
               variant="secondary"
-              aria-label="Saiba mais sobre o ChinesOnline"
+              aria-label={t('hero.learnMoreAriaLabel')}
             >
-              Saiba mais
+              {t('hero.learnMore')}
             </Button>
             <Button
               href="#download"
               variant="primary"
-              aria-label="Baixar ChinesOnline na Google Play Store"
+              aria-label={t('hero.downloadAriaLabel')}
             >
-              Baixe agora
+              {t('hero.downloadNow')}
             </Button>
           </nav>
         </div>
       </div>
 
       {/* Indicador visual de scroll — acessível */}
-      <div className={styles.scrollIndicator} aria-hidden="true" role="img" aria-label="Role para baixo">
+      <div className={styles.scrollIndicator} aria-hidden="true" role="img" aria-label={t('hero.scrollIndicator')}>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <polyline points="6 9 12 15 18 9" />
         </svg>

@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { useI18n } from '../../i18n/i18nContext'
 import styles from './ContactForm.module.scss'
 
 export type ContactFormProps = {
@@ -16,6 +17,7 @@ type FormState = {
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 
 export function ContactForm({ className }: ContactFormProps) {
+  const { t } = useI18n()
   const [formData, setFormData] = useState<FormState>({
     name: '',
     email: '',
@@ -64,7 +66,7 @@ export function ContactForm({ className }: ContactFormProps) {
       !formData.message.trim()
     ) {
       setStatus('error')
-      setErrorMessage('Por favor, preencha todos os campos obrigatórios.')
+      setErrorMessage(t('contact.formErrorRequired'))
       return
     }
 
@@ -72,14 +74,14 @@ export function ContactForm({ className }: ContactFormProps) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(formData.email)) {
       setStatus('error')
-      setErrorMessage('Por favor, insira um email válido.')
+      setErrorMessage(t('contact.formErrorEmail'))
       return
     }
 
     // Validate message length (at least 10 characters)
     if (formData.message.trim().length < 10) {
       setStatus('error')
-      setErrorMessage('A mensagem deve ter pelo menos 10 caracteres.')
+      setErrorMessage(t('contact.formErrorMessage'))
       return
     }
 
@@ -112,15 +114,11 @@ export function ContactForm({ className }: ContactFormProps) {
         })
       } else {
         setStatus('error')
-        setErrorMessage(
-          'Houve um erro ao enviar o formulário. Por favor, tente novamente.'
-        )
+        setErrorMessage(t('contact.formError'))
       }
     } catch (error) {
       setStatus('error')
-      setErrorMessage(
-        'Erro de conexão. Por favor, verifique sua conexão e tente novamente.'
-      )
+      setErrorMessage(t('contact.formErrorConnection'))
     }
   }
 
@@ -135,9 +133,7 @@ export function ContactForm({ className }: ContactFormProps) {
         {/* Status message */}
         {status === 'success' && (
           <div className={styles.successMessage} role="alert">
-            <p>
-              ✓ Obrigado! Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.
-            </p>
+            <p>{t('contact.formSuccess')}</p>
           </div>
         )}
 
@@ -162,7 +158,7 @@ export function ContactForm({ className }: ContactFormProps) {
         {/* Name field */}
         <div className={styles.formGroup}>
           <label htmlFor="name" className={styles.label}>
-            Nome <span className={styles.required}>*</span>
+            {t('contact.formName')} <span className={styles.required}>{t('contact.formRequired')}</span>
           </label>
           <input
             id="name"
@@ -171,7 +167,7 @@ export function ContactForm({ className }: ContactFormProps) {
             value={formData.name}
             onChange={handleChange}
             className={styles.input}
-            placeholder="Seu nome"
+            placeholder={t('contact.formNamePlaceholder')}
             required
             disabled={status === 'submitting'}
           />
@@ -180,7 +176,7 @@ export function ContactForm({ className }: ContactFormProps) {
         {/* Email field */}
         <div className={styles.formGroup}>
           <label htmlFor="email" className={styles.label}>
-            Email <span className={styles.required}>*</span>
+            {t('contact.formEmail')} <span className={styles.required}>{t('contact.formRequired')}</span>
           </label>
           <input
             id="email"
@@ -189,7 +185,7 @@ export function ContactForm({ className }: ContactFormProps) {
             value={formData.email}
             onChange={handleChange}
             className={styles.input}
-            placeholder="seu@email.com"
+            placeholder={t('contact.formEmailPlaceholder')}
             required
             disabled={status === 'submitting'}
           />
@@ -198,7 +194,7 @@ export function ContactForm({ className }: ContactFormProps) {
         {/* Subject field */}
         <div className={styles.formGroup}>
           <label htmlFor="subject" className={styles.label}>
-            Assunto <span className={styles.required}>*</span>
+            {t('contact.formSubject')} <span className={styles.required}>{t('contact.formRequired')}</span>
           </label>
           <input
             id="subject"
@@ -207,7 +203,7 @@ export function ContactForm({ className }: ContactFormProps) {
             value={formData.subject}
             onChange={handleChange}
             className={styles.input}
-            placeholder="Assunto da sua mensagem"
+            placeholder={t('contact.formSubjectPlaceholder')}
             required
             disabled={status === 'submitting'}
           />
@@ -216,7 +212,7 @@ export function ContactForm({ className }: ContactFormProps) {
         {/* Message field */}
         <div className={styles.formGroup}>
           <label htmlFor="message" className={styles.label}>
-            Mensagem <span className={styles.required}>*</span>
+            {t('contact.formMessage')} <span className={styles.required}>{t('contact.formRequired')}</span>
           </label>
           <textarea
             id="message"
@@ -224,7 +220,7 @@ export function ContactForm({ className }: ContactFormProps) {
             value={formData.message}
             onChange={handleChange}
             className={styles.textarea}
-            placeholder="Sua mensagem aqui..."
+            placeholder={t('contact.formMessagePlaceholder')}
             rows={6}
             required
             disabled={status === 'submitting'}
@@ -237,7 +233,7 @@ export function ContactForm({ className }: ContactFormProps) {
           className={styles.submitButton}
           disabled={status === 'submitting'}
         >
-          {status === 'submitting' ? 'Enviando...' : 'Enviar Mensagem'}
+          {status === 'submitting' ? t('contact.formSubmitting') : t('contact.formSubmit')}
         </button>
       </form>
     </div>

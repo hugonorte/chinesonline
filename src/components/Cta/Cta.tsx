@@ -1,3 +1,4 @@
+import { useI18n } from '../../i18n/i18nContext'
 import { StoreBadge, StoreSoon } from '../StoreBadge/StoreBadge'
 import styles from './Cta.module.scss'
 
@@ -8,6 +9,8 @@ export type CtaProps = {
 }
 
 export function Cta({ className }: CtaProps) {
+  const { t } = useI18n()
+
   return (
     <section
       className={`${styles.cta} ${className || ''}`}
@@ -23,7 +26,7 @@ export function Cta({ className }: CtaProps) {
             '@context': 'https://schema.org',
             '@type': 'SoftwareApplication',
             name: 'ChinesOnline',
-            description: 'Aprenda caracteres chineses jogando com repetição espaçada baseada em neurociência.',
+            description: t('hero.description'),
             applicationCategory: 'EducationalApplication',
             operatingSystem: 'Android',
             downloadUrl: PLAY_STORE_URL,
@@ -32,13 +35,13 @@ export function Cta({ className }: CtaProps) {
                 '@type': 'Offer',
                 price: '0',
                 priceCurrency: 'BRL',
-                name: 'Versão Lite',
+                name: t('cta.versaoLite'),
               },
               {
                 '@type': 'Offer',
                 price: '19.00',
                 priceCurrency: 'USD',
-                name: 'Versão Premium',
+                name: t('cta.versaoPremium'),
               },
             ],
           }),
@@ -49,11 +52,10 @@ export function Cta({ className }: CtaProps) {
         {/* Conteúdo motivacional */}
         <header className={styles.header}>
           <h2 className={styles.heading} id="cta-heading" itemProp="headline">
-            Comece sua jornada no aprendizado de mandarim hoje
+            {t('cta.title')}
           </h2>
           <p className={styles.description} itemProp="description">
-            Baixe agora o ChinesOnline e acesse a versão Lite gratuitamente. Decore seus primeiros caracteres em minutos
-            e suba de nível com nossa tecnologia de repetição espaçada.
+            {t('cta.description')}
           </p>
         </header>
 
@@ -64,16 +66,13 @@ export function Cta({ className }: CtaProps) {
 
           {/* Apple App Store — Em breve */}
           <StoreSoon>
-            <span className={styles.soonText}>Disponível em breve na App Store</span>
+            <span className={styles.soonText}>{t('cta.comingSoonAppStore')}</span>
           </StoreSoon>
         </div>
 
         {/* Nota informativa */}
         <div className={styles.disclaimer}>
-          <p>
-            Versão Android disponível para dispositivos com Android 8.0 ou superior. A versão iOS está em
-            desenvolvimento.
-          </p>
+          <p>{t('cta.disclaimer')}</p>
         </div>
       </div>
     </section>

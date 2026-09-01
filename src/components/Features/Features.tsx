@@ -1,10 +1,14 @@
+import { useI18n } from '../../i18n/i18nContext'
 import styles from './Features.module.scss'
 
 type Feature = {
   id: string
-  label: string
-  title: string
-  description: string
+  labelKey?: string
+  titleKey?: string
+  descriptionKey?: string
+  label?: string
+  title?: string
+  description?: string
   icon: React.ReactNode
 }
 
@@ -102,33 +106,29 @@ const AudioIcon = () => (
   </svg>
 )
 
-const FEATURES: Feature[] = [
+const FEATURES_CONFIG: Array<{ id: string; titleKey: string; descriptionKey: string; icon: React.ReactNode }> = [
   {
     id: 'gameplay',
-    label: 'Gamificação',
-    title: 'Aprenda Jogando',
-    description: 'Transformamos o aprendizado de caracteres chineses em um jogo envolvente. Cada sessão é curta, divertida e viciante.',
+    titleKey: 'features.gameification',
+    descriptionKey: 'features.gameificationDesc',
     icon: <GameplayIcon />,
   },
   {
     id: 'algorithm',
-    label: 'Neurociência',
-    title: 'Algoritmo Otimizado',
-    description: 'Usa repetição espaçada e curva do esquecimento para garantir que os caracteres ficam na memória para sempre.',
+    titleKey: 'features.spacedRepetition',
+    descriptionKey: 'features.spacedRepetitionDesc',
     icon: <AlgorithmIcon />,
   },
   {
     id: 'versions',
-    label: 'Flexibilidade',
-    title: 'Lite e Premium',
-    description: 'Comece gratuitamente com a versão Lite. Evolua para Premium e desbloqueie mais características e conteúdo exclusivo.',
+    titleKey: 'features.customCharacters',
+    descriptionKey: 'features.customCharactersDesc',
     icon: <VersionsIcon />,
   },
   {
     id: 'audio',
-    label: 'Pronúncia',
-    title: 'Áudio Nativo',
-    description: 'Cada caractere vem acompanhado de áudio falado por falantes chineses. Aprenda a pronunciar corretamente.',
+    titleKey: 'features.nativePronunciation',
+    descriptionKey: 'features.nativePronunciationDesc',
     icon: <AudioIcon />,
   },
 ]
@@ -138,6 +138,15 @@ export type FeaturesProps = {
 }
 
 export function Features({ className }: FeaturesProps) {
+  const { t } = useI18n()
+
+  const FEATURES: Feature[] = FEATURES_CONFIG.map((config) => ({
+    ...config,
+    label: t(config.titleKey),
+    title: t(config.titleKey),
+    description: t(config.descriptionKey),
+  }))
+
   return (
     <section
       className={`${styles.features} ${className || ''}`}
@@ -152,9 +161,8 @@ export function Features({ className }: FeaturesProps) {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'ItemList',
-            name: 'Funcionalidades do ChinesOnline',
-            description:
-              'As principais funcionalidades que tornam o ChinesOnline único: gamificação, repetição espaçada, versões Lite/Premium e pronúncia nativa.',
+            name: t('features.title'),
+            description: t('features.subtitle'),
             itemListElement: FEATURES.map((feature, index) => ({
               '@type': 'ListItem',
               position: index + 1,
@@ -175,13 +183,12 @@ export function Features({ className }: FeaturesProps) {
         <header className={styles.header}>
           <div className={styles.headerContent}>
             <h2 className={styles.title} id="features-heading" itemProp="name">
-              Aprenda caracteres chineses com uma abordagem
+              {t('features.title')}
               <br />
-              que realmente funciona
+              {t('features.subtitle')}
             </h2>
             <p className={styles.subtitle} itemProp="description">
-              Conheça os 4 pilares do ChinesOnline que tornam o aprendizado de mandarim mais eficaz, divertido e
-              acessível.
+              {t('features.subtitle')}
             </p>
           </div>
         </header>
