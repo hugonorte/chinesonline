@@ -1,4 +1,9 @@
 <?php
+// ATENÇÃO: Habilitando exibição de erros temporariamente para debug!
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Permitir acesso do frontend (CORS se necessário, embora no mesmo domínio não seja estritamente exigido)
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
@@ -129,7 +134,7 @@ try {
     
     http_response_code(200);
     echo json_encode(["success" => true, "message" => "Message sent!"]);
-} catch (Exception $e) {
+} catch (\Throwable $e) {
     http_response_code(500);
-    echo json_encode(["error" => "Message could not be sent. Mailer Error: {$mail->ErrorInfo}"]);
+    echo json_encode(["error" => "Message could not be sent. Mailer Error: {$e->getMessage()}"]);
 }
