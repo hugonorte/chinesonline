@@ -41,4 +41,4 @@ jobs:
           command: |
             eval $(ssh-agent -s)
             echo "${{ secrets.HUGONORTE_PRIVATE_SSH_KEY }}" | tr -d '\r' | ssh-add -
-            rsync -avzr --delete -e "ssh -p 65002 -o StrictHostKeyChecking=no" dist/ ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_IP }}:/home/${{ secrets.HOSTINGER_USER }}/domains/${{ secrets.HOSTINGER_DOMAIN }}/public_html/
+            rsync -avzr --delete -e "ssh -p 65002 -o StrictHostKeyChecking=no" dist/ ${{ secrets.HOSTINGER_USERNAME }}@${{ secrets.HOSTINGER_SERVER_IP }}:/home/${{ secrets.HOSTINGER_USERNAME }}/domains/${{ secrets.HOSTINGER_DOMAIN }}/public_html/
