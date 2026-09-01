@@ -110,7 +110,7 @@ try {
 
     // Remetente e Destinatário
     $mail->setFrom('support@mail.chinesonline.com.br', 'Site Principal ChinesOnline');
-    $mail->addAddress('support@mail.chinesonline.com.br'); // Para quem vai o e-mail (você mesmo ou o suporte)
+    $mail->addAddress('admin@mail.chinesonline.com.br'); // Para quem vai o e-mail (você mesmo ou o suporte)
     $mail->addReplyTo($email, $name); // Se você clicar em 'Responder', vai para o e-mail do cliente
 
     // Conteúdo
