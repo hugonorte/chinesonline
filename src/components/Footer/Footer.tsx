@@ -113,6 +113,11 @@ export function Footer({ className }: FooterProps) {
                   {t('footer.contactUs')}
                 </a>
               </li>
+              <li>
+                <a href="/delete_account" className={styles.navLink}>
+                  {t('footer.deleteAccount')}
+                </a>
+              </li>
             </ul>
           </nav>
         </div>

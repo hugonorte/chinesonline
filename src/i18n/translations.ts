@@ -112,6 +112,7 @@ export const translations = {
       termsOfUse: 'Termos de Uso',
       privacyPolicy: 'Política de Privacidade',
       contactUs: 'Fale Conosco',
+      deleteAccount: 'Excluir Conta',
       connectTitle: 'Conecte-se',
       followTwitter: 'Siga-nos no Twitter/X',
       followInstagram: 'Siga-nos no Instagram',
@@ -191,6 +192,13 @@ export const translations = {
       section8Title: '8. Privacidade de Crianças e Menores',
       section9Title: '9. Mudanças nesta Política',
       section10Title: '10. Entre em Contato Conosco',
+    },
+
+    // Delete Account Page
+    deleteAccount: {
+      title: 'Exclusão de Conta',
+      descriptionPart1: 'Para solicitar a exclusão da sua conta e de todos os seus dados associados ao app ChinesOnline, envie um e-mail para ',
+      descriptionPart2: " com o assunto 'Exclusão de Conta' a partir do e-mail cadastrado. Processaremos sua solicitação em até 15 dias.",
     },
   },
 
@@ -307,6 +315,7 @@ export const translations = {
       termsOfUse: 'Términos de Uso',
       privacyPolicy: 'Política de Privacidad',
       contactUs: 'Contáctenos',
+      deleteAccount: 'Eliminar Cuenta',
       connectTitle: 'Conectar',
       followTwitter: 'Síguenos en Twitter/X',
       followInstagram: 'Síguenos en Instagram',
@@ -385,6 +394,13 @@ export const translations = {
       section8Title: '8. Privacidad de Niños y Menores',
       section9Title: '9. Cambios en esta Política',
       section10Title: '10. Contáctanos',
+    },
+
+    // Delete Account Page
+    deleteAccount: {
+      title: 'Eliminación de Cuenta',
+      descriptionPart1: 'Para solicitar la eliminación de su cuenta y de todos sus datos asociados con la aplicación ChinesOnline, envíe un correo electrónico a ',
+      descriptionPart2: " con el asunto 'Eliminación de Cuenta' desde su correo electrónico registrado. Procesaremos su solicitud dentro de 15 días.",
     },
   },
 
@@ -501,6 +517,7 @@ export const translations = {
       termsOfUse: 'Terms of Use',
       privacyPolicy: 'Privacy Policy',
       contactUs: 'Contact Us',
+      deleteAccount: 'Delete Account',
       connectTitle: 'Connect',
       followTwitter: 'Follow us on Twitter/X',
       followInstagram: 'Follow us on Instagram',
@@ -579,6 +596,13 @@ export const translations = {
       section8Title: '8. Children and Minors Privacy',
       section9Title: '9. Changes to this Policy',
       section10Title: '10. Contact Us',
+    },
+
+    // Delete Account Page
+    deleteAccount: {
+      title: 'Delete Account',
+      descriptionPart1: 'To request the deletion of your account and all your data associated with the ChinesOnline app, send an email to ',
+      descriptionPart2: " with the subject 'Account Deletion' from your registered email. We will process your request within 15 days.",
     },
   },
 }

@@ -11,6 +11,7 @@ import { DesignSystemPage } from './design-system/DesignSystemPage'
 import { Terms } from './pages/Terms'
 import { Privacy } from './pages/Privacy'
 import { Contact } from './pages/Contact'
+import { DeleteAccount } from './pages/DeleteAccount'
 
 /**
  * Roteamento provisório por pathname — o site ainda não tem router.
@@ -34,6 +35,10 @@ function AppContent() {
 
   if (window.location.pathname === '/contact') {
     return <Contact />
+  }
+
+  if (window.location.pathname === '/delete_account') {
+    return <DeleteAccount />
   }
 
   return (
